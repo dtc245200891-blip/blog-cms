@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # 1. Cơ sở dữ liệu MySQL 8 chính thức
+  mysql:
+    image: mysql:8.0
+    container_name: blog_cms_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: blog_cms
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. Máy chủ Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: blog_cms_backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      NODE_ENV: production
+      DATABASE_URL: "mysql://root:rootpassword@mysql:3306/blog_cms"
+      JWT_SECRET: "ictu_blog_cms_super_secret_jwt_key_2026_vu_trong_nghia"
+      JWT_EXPIRES_IN: "7d"
+      COOKIE_SECRET: "ictu_cookie_secret_key_k23l"
+      FRONTEND_URL: "http://localhost:3000"
+      UPLOAD_DIR: "/app/uploads"
+    volumes:
+      - uploads_data:/app/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # 3. Máy chủ giao diện Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: blog_cms_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  uploads_data:

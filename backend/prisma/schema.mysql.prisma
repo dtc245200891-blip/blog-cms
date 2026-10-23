@@ -1,0 +1,226 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid()) @db.VarChar(36)
+  email         String    @unique @db.VarChar(191)
+  username      String    @unique @db.VarChar(191)
+  passwordHash  String    @db.VarChar(255)
+  fullName      String    @db.VarChar(191)
+  bio           String?   @db.Text
+  avatarUrl     String?   @db.VarChar(500)
+  role          String    @default("READER") @db.VarChar(50) // ADMIN, EDITOR, AUTHOR, READER
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  posts         Post[]
+  comments      Comment[]
+  bookmarks     Bookmark[]
+  uploadedMedia Media[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+
+  @@map("users")
+}
+
+model Category {
+  id          String     @id @default(uuid()) @db.VarChar(36)
+  name        String     @db.VarChar(191)
+  slug        String     @unique @db.VarChar(191)
+  description String?    @db.Text
+  parentId    String?    @db.VarChar(36)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    Category[] @relation("CategoryHierarchy")
+  posts       Post[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  name      String    @db.VarChar(191)
+  slug      String    @unique @db.VarChar(191)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  postTags  PostTag[]
+
+  @@map("tags")
+}
+
+model Post {
+  id              String      @id @default(uuid()) @db.VarChar(36)
+  title           String      @db.VarChar(255)
+  slug            String      @unique @db.VarChar(255)
+  excerpt         String?     @db.Text
+  content         String      @db.LongText
+  featuredImage   String?     @db.VarChar(500)
+  status          String      @default("DRAFT") @db.VarChar(50)
+  rejectionReason String?     @db.Text
+  isPinned        Boolean     @default(false)
+  allowComments   Boolean     @default(true)
+  viewsCount      Int         @default(0)
+  publishedAt     DateTime?
+  scheduledAt     DateTime?
+  seoTitle        String?     @db.VarChar(255)
+  seoDescription  String?     @db.VarChar(500)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  authorId        String      @db.VarChar(36)
+  author          User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  categoryId      String?     @db.VarChar(36)
+  category        Category?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  postTags        PostTag[]
+  comments        Comment[]
+  bookmarks       Bookmark[]
+  postViews       PostView[]
+
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([status])
+  @@index([publishedAt])
+  @@map("posts")
+}
+
+model PostTag {
+  postId    String @db.VarChar(36)
+  tagId     String @db.VarChar(36)
+
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+  @@map("post_tags")
+}
+
+model Comment {
+  id          String    @id @default(uuid()) @db.VarChar(36)
+  content     String    @db.Text
+  status      String    @default("APPROVED") @db.VarChar(50)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  postId      String    @db.VarChar(36)
+  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  authorId    String    @db.VarChar(36)
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  parentId    String?   @db.VarChar(36)
+  parent      Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     Comment[] @relation("CommentReplies")
+
+  @@index([postId])
+  @@index([authorId])
+  @@map("comments")
+}
+
+model Bookmark {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  createdAt DateTime @default(now())
+
+  userId    String   @db.VarChar(36)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  postId    String   @db.VarChar(36)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@map("bookmarks")
+}
+
+model Media {
+  id           String   @id @default(uuid()) @db.VarChar(36)
+  filename     String   @db.VarChar(255)
+  originalName String   @db.VarChar(255)
+  mimeType     String   @db.VarChar(100)
+  size         Int
+  url          String   @db.VarChar(500)
+  createdAt    DateTime @default(now())
+
+  uploaderId   String   @db.VarChar(36)
+  uploader     User     @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+
+  @@map("media")
+}
+
+model Notification {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  title     String   @db.VarChar(255)
+  message   String   @db.Text
+  type      String   @default("INFO") @db.VarChar(50)
+  isRead    Boolean  @default(false)
+  link      String?  @db.VarChar(500)
+  createdAt DateTime @default(now())
+
+  userId    String   @db.VarChar(36)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("notifications")
+}
+
+model Setting {
+  id          String   @id @default(uuid()) @db.VarChar(36)
+  key         String   @unique @db.VarChar(100)
+  value       String   @db.LongText
+  description String?  @db.VarChar(255)
+  updatedAt   DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  action    String   @db.VarChar(100)
+  entity    String   @db.VarChar(100)
+  entityId  String?  @db.VarChar(36)
+  details   String?  @db.Text
+  ipAddress String?  @db.VarChar(45)
+  userAgent String?  @db.VarChar(255)
+  createdAt DateTime @default(now())
+
+  userId    String?  @db.VarChar(36)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entity])
+  @@index([userId])
+  @@map("audit_logs")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  email     String   @db.VarChar(191)
+  token     String   @unique @db.VarChar(255)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@map("password_reset_tokens")
+}
+
+model PostView {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  ipHash    String?  @db.VarChar(64)
+  createdAt DateTime @default(now())
+
+  postId    String   @db.VarChar(36)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@map("post_views")
+}
