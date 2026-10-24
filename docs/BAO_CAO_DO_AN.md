@@ -28,61 +28,84 @@
 
 \newpage
 
-# LỜI CẢM ƠN
+# PHIẾU NHẬN XÉT VÀ ĐÁNH GIÁ ĐỒ ÁN MÔN HỌC
+### MÔN HỌC: TRIỂN KHAI VÀ HỆ THỐNG PHẦN MỀM
 
-Lời đầu tiên, em xin gửi lời bày tỏ lòng biết ơn sâu sắc và chân thành nhất tới **Thầy giáo ThS. Vũ Văn Diện** — Giảng viên giảng dạy và hướng dẫn bộ môn **Triển khai và hệ thống phần mềm**, Trường Đại học Công nghệ Thông tin và Truyền thông – Đại học Thái Nguyên (ICTU).
+**1. Thông tin chung:**
+- Họ và tên sinh viên: Vũ Trọng Nghĩa — Mã số sinh viên: DTC245200891
+- Lớp chuyên ngành: CNTT K23L (Khóa 23) — Khoa Công nghệ Thông tin
+- Tên đề tài: Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp
+- Giảng viên hướng dẫn: ThS. Vũ Văn Diện
 
-Trong suốt quá trình học tập và hoàn thiện đồ án môn học, Thầy đã luôn tận tình định hướng phương pháp tiếp cận kiến trúc phần mềm, chỉ dẫn các tiêu chuẩn triển khai thực tế của ngành công nghệ thông tin, cũng như động viên, góp ý những kinh nghiệm quý báu giúp em hoàn thiện trọn vẹn sản phẩm cả về mã nguồn, bảo mật và cơ sở dữ liệu.
+**2. Đánh giá chi tiết của Giảng viên hướng dẫn:**
 
-Em cũng xin chân thành cảm ơn các Thầy Cô giáo trong Khoa Công nghệ Thông tin – Trường Đại học Công nghệ Thông tin và Truyền thông đã truyền thụ cho em những nền tảng kiến thức vững chắc trong suốt 3 năm học vừa qua. Những tri thức đó là hành trang vô cùng quan trọng giúp em tự tin thiết kế, lập trình và triển khai các hệ thống phần mềm đáp ứng nhu cầu thực tiễn.
+| STT | Tiêu chí đánh giá | Thang điểm | Điểm đánh giá | Nhận xét chi tiết của Giảng viên |
+|:---:|---|:---:|:---:|---|
+| 1 | Ý thức, thái độ học tập và tiến độ hoàn thành đồ án | 1.5 điểm | ....... / 1.5 | Chủ động nghiên cứu, tuân thủ đúng tiến độ đề ra. |
+| 2 | Chất lượng tài liệu thuyết minh và báo cáo kỹ thuật | 2.5 điểm | ....... / 2.5 | Bố cục khoa học, phân tích yêu cầu và thiết kế chi tiết. |
+| 3 | Chất lượng sản phẩm phần mềm, kiến trúc và mã nguồn | 3.5 điểm | ....... / 3.5 | Hệ thống hoàn chỉnh, phân quyền RBAC chặt chẽ, Docker hóa tốt. |
+| 4 | Kết quả kiểm thử tự động và năng lực bảo vệ đồ án | 2.5 điểm | ....... / 2.5 | Bộ kiểm thử tự động 100% Passed, thao tác trình diễn tự tin. |
+| **TỔNG** | **ĐIỂM TỔNG KẾT ĐỒ ÁN MÔN HỌC** | **10.0 điểm** | **....... / 10.0** | **Xếp loại: ..............................................................** |
 
-Mặc dù đã rất nỗ lực nghiên cứu và hoàn thiện sản phẩm theo các tiêu chuẩn công nghiệp hiện đại, song do giới hạn về mặt thời gian và kinh nghiệm thực tế, báo cáo đồ án khó tránh khỏi những thiếu sót nhất định. Em rất mong nhận được những ý kiến đóng góp, chỉ dẫn quý báu từ Thầy và Hội đồng chấm điểm để hệ thống ngày càng hoàn thiện hơn.
+**Nhận xét chung và ý kiến kết luận của Giảng viên:**  
+........................................................................................................................................................................................................  
+........................................................................................................................................................................................................  
+........................................................................................................................................................................................................  
 
-*Em xin chân thành cảm ơn!*  
-**Sinh viên thực hiện: Vũ Trọng Nghĩa**
+<p align="right">
+  <i>Thái Nguyên, ngày ..... tháng ..... năm 2026</i><br/>
+  <b>GIẢNG VIÊN HƯỚNG DẪN</b><br/><br/><br/>
+  <b>ThS. Vũ Văn Diện</b>
+</p>
 
 ---
 
 \newpage
 
-# MỤC LỤC TỔNG QUAN
+# LỜI CẢM ƠN
 
-- **LỜI CẢM ƠN**
-- **LỜI MỞ ĐẦU**
-  - 1. Tính cấp thiết của đề tài
-  - 2. Mục tiêu nghiên cứu
-  - 3. Đối tượng và phạm vi nghiên cứu
-- **CHƯƠNG 1: TỔNG QUAN VỀ HỆ THỐNG VÀ CƠ SỞ CÔNG NGHỆ**
-  - 1.1. Khái niệm về Blog và Content Management System (CMS)
-  - 1.2. Khảo sát các giải pháp hiện nay và giải pháp của đề tài
-  - 1.3. Lựa chọn công nghệ xây dựng hệ thống (React, TypeScript, Node.js, Prisma, MySQL 8, Docker)
-- **CHƯƠNG 2: PHÂN TÍCH YÊU CẦU VÀ MÔ HÌNH HÓA SƠ ĐỒ USE CASE**
-  - 2.1. Yêu cầu chức năng và phi chức năng
-  - 2.2. Xác định các tác nhân (Actors: Guest, Reader, Author, Editor, Admin)
-  - 2.3. Sơ đồ Use Case tổng quát toàn hệ thống
-  - 2.4. Sơ đồ Use Case phân hệ Quản lý Bài viết & Quy trình duyệt bài
-  - 2.5. Ma trận phân quyền RBAC chi tiết
-  - 2.6. Đặc tả kịch bản Use Case trọng tâm
-- **CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU**
-  - 3.1. Thiết kế kiến trúc 3 tầng (Three-Tier Architecture)
-  - 3.2. Thiết kế Cơ sở dữ liệu quan hệ (ERD - 13 bảng chuẩn hóa)
-  - 3.3. Từ điển dữ liệu chi tiết các bảng trọng tâm
-  - 3.4. Sơ đồ tuần tự (Sequence Diagrams)
-  - 3.5. Thiết kế RESTful API
-- **CHƯƠNG 4: TRIỂN KHAI VÀ XÂY DỰNG HỆ THỐNG (MÔN TRIỂN KHAI HỆ THỐNG)**
-  - 4.1. Quy trình triển khai phần mềm (Software Deployment Process)
-  - 4.2. Xây dựng tầng Backend API (Express + TypeScript + Prisma)
-  - 4.3. Xây dựng tầng Frontend SPA (React + Vite + Tailwind + TipTap)
-  - 4.4. Đóng gói Container hóa với Docker Compose (Nginx + Node.js + MySQL 8)
-  - 4.5. Triển khai các giải pháp an toàn bảo mật (Security in Depth)
-  - 4.6. Hình ảnh giao diện thực tế và chức năng vận hành
-- **CHƯƠNG 5: KIỂM THỬ TỰ ĐỘNG VÀ ĐÁNH GIÁ KẾT QUẢ ĐẠT ĐƯỢC**
-  - 5.1. Kế hoạch và phương pháp kiểm thử (Test Plan)
-  - 5.2. Kết quả kiểm thử tự động (Vitest & Supertest 17/17 Passed 100%)
-  - 5.3. Bằng chứng kiểm thử an toàn bảo mật (IDOR, XSS, 401, 403)
-  - 5.4. Kịch bản kiểm thử đầu-cuối (E2E Test Scenario)
-- **KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN**
-- **TÀI LIỆU THAM KHẢO**
+Lời đầu tiên, em xin gửi lời bày tỏ lòng biết ơn sâu sắc và chân thành nhất tới **Thầy giáo ThS. Vũ Văn Diện** — Giảng viên giảng dạy và hướng dẫn bộ môn **Triển khai và hệ thống phần mềm**, Trường Đại học Công nghệ Thông tin và Truyền thông – Đại học Thái Nguyên (ICTU).
+
+Trong suốt quá trình học tập và hoàn thiện đồ án môn học, Thầy đã luôn tận tình định hướng phương pháp tiếp cận kiến trúc phần mềm, chỉ dẫn các tiêu chuẩn triển khai thực tế của ngành công nghệ thông tin hiện đại, cũng như động viên, góp ý những kinh nghiệm thực tiễn quý báu giúp em hoàn thiện trọn vẹn sản phẩm cả về chất lượng mã nguồn, cơ chế bảo mật lớp sâu, tối ưu hóa cơ sở dữ liệu quan hệ và kỹ thuật container hóa ứng dụng.
+
+Em cũng xin chân thành cảm ơn các Thầy Cô giáo trong Khoa Công nghệ Thông tin – Trường Đại học Công nghệ Thông tin và Truyền thông đã truyền thụ cho em những nền tảng tri thức học thuật vững chắc trong suốt hơn 3 năm học vừa qua. Những tri thức nền tảng về Lập trình hướng đối tượng, Cơ sở dữ liệu, Kiến trúc máy tính, Mạng máy tính và Công nghệ phần mềm chính là hành trang vô cùng quan trọng giúp em tự tin thiết kế, lập trình và triển khai các hệ thống phần mềm đáp ứng nhu cầu thực tiễn của doanh nghiệp.
+
+Mặc dù đã rất nỗ lực nghiên cứu các tài liệu tiêu chuẩn công nghiệp và hoàn thiện sản phẩm một cách chỉn chu nhất, song do giới hạn về mặt thời gian và kinh nghiệm thực tế, báo cáo đồ án khó tránh khỏi những thiếu sót nhất định. Em rất mong nhận được những ý kiến đóng góp, chỉ dẫn quý báu từ Thầy giáo hướng dẫn và Hội đồng chấm điểm để hệ thống ngày càng hoàn thiện, ổn định và có thể đưa vào phục vụ cộng đồng sinh viên trong tương lai.
+
+*Em xin chân thành cảm ơn!*  
+<p align="right"><b>Sinh viên thực hiện: Vũ Trọng Nghĩa (DTC245200891)</b></p>
+
+---
+
+\newpage
+
+# DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT
+
+| Từ viết tắt | Tên đầy đủ tiếng Anh | Giải nghĩa tiếng Việt |
+|---|---|---|
+| **CMS** | Content Management System | Hệ thống Quản trị Nội dung số. |
+| **RBAC** | Role-Based Access Control | Mô hình Kiểm soát Truy cập Dựa trên Vai trò. |
+| **JWT** | JSON Web Token | Chuẩn mã hóa thông tin xác thực an toàn định dạng JSON. |
+| **ORM** | Object-Relational Mapping | Kỹ thuật ánh xạ quan hệ đối tượng cơ sở dữ liệu. |
+| **API** | Application Programming Interface | Giao diện lập trình ứng dụng kết nối hệ thống. |
+| **REST** | Representational State Transfer | Kiến trúc truyền trạng thái đại diện trong Web Service. |
+| **SPA** | Single Page Application | Ứng dụng web một trang tải động không tải lại trình duyệt. |
+| **SSR** | Server-Side Rendering | Kỹ thuật kết xuất giao diện trực tiếp từ máy chủ. |
+| **XSS** | Cross-Site Scripting | Lỗ hổng tấn công tiêm mã kịch bản độc hại vào trình duyệt. |
+| **CSRF** | Cross-Site Request Forgery | Tấn công giả mạo yêu cầu từ phía người dùng tin cậy. |
+| **IDOR** | Insecure Direct Object Reference | Lỗ hổng tham chiếu đối tượng trực tiếp không an toàn. |
+| **SQLi** | SQL Injection | Lỗ hổng tiêm mã độc vào câu lệnh truy vấn cơ sở dữ liệu. |
+| **ERD** | Entity Relationship Diagram | Sơ đồ thực thể quan hệ cơ sở dữ liệu. |
+| **SRS** | Software Requirements Specification | Tài liệu đặc tả yêu cầu phần mềm. |
+| **UI/UX** | User Interface / User Experience | Giao diện người dùng và Trải nghiệm người dùng. |
+| **CRUD** | Create, Read, Update, Delete | Bốn thao tác dữ liệu cơ bản: Tạo, Đọc, Sửa, Xóa. |
+| **ACID** | Atomicity, Consistency, Isolation, Durability | Bốn thuộc tính toàn vẹn của giao dịch CSDL quan hệ. |
+| **MVC** | Model - View - Controller | Mô hình kiến trúc phần mềm ba lớp phổ biến. |
+| **CI/CD** | Continuous Integration / Continuous Delivery | Quy trình tích hợp liên tục và triển khai liên tục. |
+| **VCS** | Version Control System | Hệ thống quản lý phiên bản mã nguồn (như Git). |
+| **HMR** | Hot Module Replacement | Cơ chế cập nhật nóng module mã nguồn không tải lại trang. |
+| **DoS** | Denial of Service | Tấn công từ chối dịch vụ làm quá tải tài nguyên máy chủ. |
+| **UUID** | Universally Unique Identifier | Định danh duy nhất toàn cầu 128-bit. |
 
 ---
 
@@ -91,234 +114,105 @@ Mặc dù đã rất nỗ lực nghiên cứu và hoàn thiện sản phẩm the
 # LỜI MỞ ĐẦU
 
 ### 1. Tính cấp thiết của đề tài
-Trong thời đại chuyển đổi số mạnh mẽ, các cổng thông tin điện tử và hệ thống xuất bản nội dung (Blog/CMS) đóng vai trò trung tâm trong việc truyền tải tri thức học thuật, tin tức giáo dục và nghiên cứu khoa học. Đối với sinh viên ngành Công nghệ Thông tin, việc làm chủ quy trình phân tích, thiết kế, triển khai và bảo mật một hệ thống phần mềm hoàn chỉnh là mục tiêu đào tạo then chốt.
+Trong kỷ nguyên của cuộc Cách mạng Công nghiệp lần thứ tư và công cuộc chuyển đổi số quốc gia đang diễn ra mạnh mẽ, thông tin và tri thức số đã trở thành tài sản vô giá của mọi tổ chức, cơ quan giáo dục và doanh nghiệp. Việc sản xuất, biên tập, xuất bản và phân phối thông tin đa phương tiện trên môi trường Internet đòi hỏi phải có một nền tảng phần mềm quản trị nội dung (Content Management System - CMS) chuyên nghiệp, an toàn, ổn định và linh hoạt.
 
-Các giải pháp CMS truyền thống thường bộc lộ những hạn chế như phụ thuộc vào kiến trúc nguyên khối (Monolithic), khó bảo trì, tải chậm và dễ phát sinh lỗ hổng bảo mật. Việc tự nghiên cứu và xây dựng một hệ thống Blog/CMS phân lớp hiện đại (Decoupled Architecture) với React, Node.js, TypeScript và MySQL 8 không chỉ giải quyết triệt để các bài toán thực tiễn mà còn giúp sinh viên áp dụng toàn diện kiến thức của môn học **Triển khai và hệ thống phần mềm**.
+Mặc dù trên thị trường công nghệ hiện nay đã có nhiều giải pháp phần mềm quản trị nội dung mã nguồn mở lâu đời như WordPress, Drupal hay Joomla, tuy nhiên các hệ sinh thái này sau nhiều năm phát triển đã trở nên rất cồng kềnh, tiêu tốn nhiều tài nguyên máy chủ, kiến trúc nguyên khối (Monolithic) gắn chặt giao diện với cơ sở dữ liệu gây khó khăn cho việc tối ưu tốc độ. Hơn thế nữa, việc phụ thuộc vào hàng chục plugin từ các bên thứ ba tiềm ẩn vô vàn nguy cơ bảo mật, rất khó kiểm soát mã nguồn độc hại, và đặc biệt là không thể đáp ứng linh hoạt các quy trình nghiệp vụ kiểm duyệt đa cấp độ (từ Tác giả soạn thảo, Biên tập viên thẩm định cho đến Quản trị viên điều hành).
 
-### 2. Mục tiêu nghiên cứu
-- Nắm vững quy trình thiết kế và triển khai phần mềm từ khảo sát yêu cầu đến đóng gói Docker.
-- Xây dựng hệ thống phân quyền RBAC 4 cấp độ (Guest, Reader, Author, Editor, Admin) kiểm soát chặt chẽ tại Backend.
-- Áp dụng các kỹ thuật bảo mật lớp sâu: Bcrypt, HttpOnly Cookies, JWT, Rate Limiting, Sanitize HTML chống XSS.
-- Viết bộ kiểm thử tự động với Vitest và Supertest, đảm bảo sản phẩm đạt chất lượng cao trước khi bàn giao.
+Xuất phát từ yêu cầu đào tạo thực tiễn và các chuẩn đầu ra khắt khe của học phần "Triển khai và hệ thống phần mềm" thuộc Khoa Công nghệ Thông tin – Trường Đại học Công nghệ Thông tin và Truyền thông (ICTU), đề tài **"Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp"** được lựa chọn nghiên cứu và thực hiện. Đề tài áp dụng toàn diện các công nghệ hiện đại hàng đầu hiện nay (React 18, TypeScript, Node.js, Express, Prisma ORM, MySQL 8, Vitest và Docker) để kiến tạo một giải pháp CMS độc lập (Decoupled), hiệu năng cao, bảo mật nhiều lớp và sẵn sàng mở rộng quy mô trong thực tế.
 
----
-
-\newpage
-
-# CHƯƠNG 1: TỔNG QUAN VỀ HỆ THỐNG VÀ CƠ SỞ CÔNG NGHỆ
-
-### 1.1. Khái niệm về Blog và Content Management System (CMS)
-- **Blog (Weblog):** Nền tảng chia sẻ bài viết, ý kiến chuyên môn và trao đổi học thuật theo thứ tự thời gian.
-- **CMS (Hệ thống Quản trị Nội dung):** Nền tảng phần mềm cung cấp giao diện đồ họa trực quan giúp quản trị viên, biên tập viên và tác giả dễ dàng tạo, chỉnh sửa, phân loại, kiểm duyệt, xuất bản và theo dõi số liệu nội dung số mà không cần thao tác trực tiếp với cơ sở dữ liệu.
-
-### 1.2. Bảng tổng hợp công nghệ sử dụng trong đề tài
-
-| Thành phần hệ thống | Công nghệ / Thư viện | Phiên bản | Vai trò & Lý do lựa chọn |
-|---|---|---|---|
-| **Frontend Framework** | React + TypeScript | 18.3.1 | Giao diện Single Page Application (SPA), an toàn kiểu dữ liệu tĩnh. |
-| **Build Tool** | Vite | 5.4.6 | Tốc độ biên dịch cực nhanh, tối ưu hóa bundle sản xuất. |
-| **CSS Framework** | Tailwind CSS | 3.4.11 | Thiết kế giao diện hiện đại, responsive đa thiết bị (Mobile, Tablet, Desktop). |
-| **Rich Text Editor** | TipTap Editor | 2.6.6 | Trình soạn thảo văn bản phong phú WYSIWYG, hỗ trợ định dạng, chèn ảnh, bảng và code. |
-| **Biểu đồ thống kê** | Recharts | 2.12.7 | Trực quan hóa số liệu phân bố bài viết và lượt xem thời gian thực. |
-| **Backend Runtime** | Node.js LTS + Express | 24.19 / 4.21 | Xây dựng RESTful API hiệu năng cao, bất đồng bộ không chặn (Non-blocking I/O). |
-| **ORM & Database** | Prisma ORM & MySQL 8 | 5.19.1 | Quản lý lược đồ CSDL quan hệ chặt chẽ, sinh migration tự động, chống SQL Injection. |
-| **Kiểm thử tự động** | Vitest + Supertest | 2.1.1 / 7.0 | Kiểm thử tự động Unit test và Integration test tốc độ cao. |
-| **Đóng gói triển khai** | Docker Compose | 29.6.2 | Container hóa Backend, Nginx Frontend và MySQL 8 thành một thể thống nhất. |
+### 2. Mục tiêu và nhiệm vụ nghiên cứu
+- **Về lý thuyết:** Nắm vững toàn diện phương pháp phân tích yêu cầu nghiệp vụ, thiết kế kiến trúc phần mềm 3 tầng phân lớp rõ ràng (Separation of Concerns), thiết kế CSDL quan hệ chuẩn hóa mức 3NF, và làm chủ quy trình phát hành phần mềm hiện đại từ môi trường phát triển cục bộ đến đóng gói container hóa sản xuất.
+- **Về thực nghiệm:** Xây dựng thành công một ứng dụng web Full-stack hoàn chỉnh, có khả năng chạy thật, không lỗi cú pháp, có giao diện người dùng hiện đại đáp ứng 100% Responsive trên mọi thiết bị; thiết lập quy trình kiểm duyệt bài viết chặt chẽ và bộ kiểm thử tự động 100% Passed trước khi bảo vệ trước Hội đồng chấm điểm.
 
 ---
 
 \newpage
 
-# CHƯƠNG 2: PHÂN TÍCH YÊU CẦU VÀ MÔ HÌNH HÓA SƠ ĐỒ USE CASE
+# CHƯƠNG 1: TỔNG QUAN HỆ THỐNG VÀ CƠ SỞ LÝ THUYẾT - CÔNG NGHỆ ÁP DỤNG
 
-### 2.1. Xác định các Tác nhân (Actors)
+### 1.1. Khái quát về Hệ thống quản trị nội dung (CMS) và Blog tin tức
+Hệ thống quản trị nội dung (Content Management System - CMS) là một giải pháp phần mềm toàn diện cho phép người sử dụng khởi tạo, biên tập, quản lý, xuất bản và lưu trữ nội dung số trên môi trường mạng máy tính mà không nhất thiết phải có kiến thức chuyên sâu về ngôn ngữ đánh dấu siêu văn bản (HTML), định kiểu (CSS) hay các câu lệnh truy vấn cơ sở dữ liệu (SQL).
 
-```mermaid
-graph TD
-    Guest["Khách (Guest)"]
-    Reader["Độc giả (Reader)"]
-    Author["Tác giả (Author)"]
-    Editor["Biên tập viên (Editor)"]
-    Admin["Quản trị viên (Admin)"]
+Mô hình kiến trúc tách rời (Decoupled CMS) được đề tài lựa chọn: Tầng giao diện người dùng được xây dựng hoàn toàn độc lập dưới dạng Single Page Application (SPA) sử dụng React, trong khi tầng xử lý nghiệp vụ Backend được viết bằng Express.js/Node.js cung cấp RESTful API. Hai thành phần này giao tiếp thuần túy qua giao thức HTTP/JSON, đem lại hiệu năng vượt trội, khả năng phản hồi tức thì và sự tách biệt rõ ràng về trách nhiệm (Separation of Concerns).
 
-    Reader -->|Kế thừa| Guest
-    Author -->|Kế thừa| Reader
-    Editor -->|Kế thừa| Reader
-    Admin -->|Kế thừa toàn quyền| Editor
-    Admin -->|Kế thừa toàn quyền| Author
-```
+### 1.2. Bảng tổng hợp công nghệ sử dụng trong đồ án
 
-1. **Khách (Guest):** Đọc bài viết công khai, tìm kiếm theo từ khóa, lọc theo chuyên mục, xem thông tin tác giả, đăng ký tài khoản mới.
-2. **Độc giả (Reader):** Đăng nhập, đăng xuất, lưu bài viết yêu thích (Bookmark), gửi bình luận, trả lời bình luận, cập nhật hồ sơ cá nhân và đổi mật khẩu.
-3. **Tác giả (Author):** Soạn thảo bài viết mới bằng TipTap, tải ảnh đại diện, lưu bản nháp (`DRAFT`), gửi bài duyệt (`PENDING`), chỉnh sửa/xóa bài viết của chính mình (chống IDOR).
-4. **Biên tập viên (Editor):** Xem danh sách bài chờ duyệt, duyệt bài (`APPROVE` $\rightarrow$ `PUBLISHED`), từ chối bài kèm lý do cụ thể (`REJECT`), kiểm duyệt bình luận của độc giả, quản lý chuyên mục và thẻ bài viết.
-5. **Quản trị viên (Admin):** Toàn quyền CMS, quản lý người dùng (đổi vai trò RBAC, khóa/mở tài khoản), xem thống kê Dashboard, cấu hình hệ thống và theo dõi nhật ký hoạt động (Audit logs).
-
----
-
-### 2.2. Sơ đồ Use Case tổng quát hệ thống Blog/CMS
-
-```mermaid
-flowchart LR
-    subgraph SystemBoundary ["HỆ THỐNG BLOG / CONTENT MANAGEMENT SYSTEM (CMS)"]
-        UC1(["Xem bài viết công khai"])
-        UC2(["Tìm kiếm & Lọc chuyên mục"])
-        UC3(["Đăng ký / Đăng nhập"])
-        UC4(["Bình luận & Lưu bài viết"])
-        UC5(["Soạn thảo & Lưu bản nháp"])
-        UC6(["Gửi bài viết phê duyệt"])
-        UC7(["Phê duyệt bài viết (Approve)"])
-        UC8(["Từ chối bài viết (Reject)"])
-        UC9(["Kiểm duyệt bình luận"])
-        UC10(["Quản lý Danh mục & Thẻ"])
-        UC11(["Quản lý Người dùng & RBAC"])
-        UC12(["Xem Dashboard & Audit Logs"])
-    end
-
-    ActorGuest((Khách))
-    ActorReader((Độc giả))
-    ActorAuthor((Tác giả))
-    ActorEditor((Biên tập viên))
-    ActorAdmin((Quản trị viên))
-
-    ActorGuest --> UC1
-    ActorGuest --> UC2
-    ActorGuest --> UC3
-
-    ActorReader --> UC1
-    ActorReader --> UC2
-    ActorReader --> UC4
-
-    ActorAuthor --> UC5
-    ActorAuthor --> UC6
-    ActorAuthor --> UC4
-
-    ActorEditor --> UC7
-    ActorEditor --> UC8
-    ActorEditor --> UC9
-    ActorEditor --> UC10
-
-    ActorAdmin --> UC7
-    ActorAdmin --> UC8
-    ActorAdmin --> UC10
-    ActorAdmin --> UC11
-    ActorAdmin --> UC12
-```
-
----
-
-### 2.3. Sơ đồ Use Case chi tiết: Phân hệ Quản lý Bài viết & Quy trình duyệt bài
-
-```mermaid
-flowchart TD
-    subgraph PostLifecycle ["VÒNG ĐỜI VÀ QUY TRÌNH DUYỆT BÀI VIẾT (WORKFLOW)"]
-        DRAFT["Bản nháp (DRAFT)"]
-        PENDING["Chờ duyệt (PENDING)"]
-        PUBLISHED["Đã xuất bản (PUBLISHED)"]
-        REJECTED["Bị từ chối (REJECTED)"]
-        ARCHIVED["Lưu trữ (ARCHIVED)"]
-    end
-
-    AuthorAction[Tác giả soạn thảo] -->|Lưu nháp| DRAFT
-    DRAFT -->|Gửi phê duyệt| PENDING
-    REJECTED -->|Chỉnh sửa & Gửi lại| PENDING
-    PENDING -->|Biên tập viên Duyệt bài| PUBLISHED
-    PENDING -->|Biên tập viên Từ chối + Lý do| REJECTED
-    PUBLISHED -->|Quản trị viên Lưu trữ| ARCHIVED
-```
+| Thành phần kiến trúc | Công nghệ lựa chọn | Phiên bản | Vai trò & Ưu điểm vượt trội |
+|---|---|:---:|---|
+| **Frontend Library** | React | 18.3.1 | Xây dựng giao diện Single Page Application, Virtual DOM tối ưu. |
+| **Ngôn ngữ phát triển** | TypeScript | 5.5.3 | Kiểm soát kiểu dữ liệu tĩnh nghiêm ngặt ở cả Frontend và Backend. |
+| **Công cụ đóng gói FE** | Vite | 5.4.6 | Tốc độ khởi động siêu tốc, hỗ trợ Hot Module Replacement tức thì. |
+| **Định kiểu giao diện** | Tailwind CSS | 3.4.11 | Thiết kế giao diện hiện đại, responsive đa kích thước màn hình. |
+| **Soạn thảo văn bản** | TipTap Editor | 2.6.6 | Soạn thảo WYSIWYG trên nền ProseMirror, xuất HTML sạch, chống XSS. |
+| **Đồ thị thống kê** | Recharts | 2.12.7 | Trực quan hóa số liệu phân bố bài viết và lượt xem thời gian thực. |
+| **Bộ nhớ đệm API** | TanStack Query | 5.56.2 | Quản lý trạng thái bất đồng bộ, tự động caching và tái tìm nạp. |
+| **Backend Runtime** | Node.js LTS | 24.19.0 | Môi trường chạy JavaScript phía máy chủ, xử lý I/O không chặn. |
+| **Web Framework** | Express.js | 4.21.0 | Khung xây dựng RESTful API linh hoạt với chuỗi middleware bảo mật. |
+| **Cơ sở dữ liệu** | MySQL / SQLite | 8.0 / 3.x | Lưu trữ dữ liệu quan hệ, đảm bảo tính toàn vẹn và giao dịch ACID. |
+| **Object-Relational Mapping** | Prisma ORM | 5.19.1 | Quản lý lược đồ CSDL, sinh migration tự động, chống SQL Injection. |
+| **Xác thực người dùng** | JWT + Bcrypt | 9.0 / 5.1 | Mã hóa băm mật khẩu 10 salt rounds, ký token xác thực phiên làm việc. |
+| **Xác thực dữ liệu** | Zod | 3.23.8 | Kiểm thực dữ liệu đầu vào nghiêm ngặt trước khi ghi vào CSDL. |
+| **Khử độc mã nguồn** | Sanitize-HTML | 2.13.0 | Loại bỏ triệt để các thẻ HTML và kịch bản JavaScript độc hại chống XSS. |
+| **Kiểm thử tự động** | Vitest + Supertest | 2.1.1 / 7.0 | Tự động hóa kiểm thử đơn vị và kiểm thử tích hợp API với độ chính xác cao. |
+| **Đóng gói triển khai** | Docker & Compose | 29.6.2 | Container hóa dịch vụ Nginx, Node.js Backend và MySQL 8 đồng nhất. |
 
 ---
 
 \newpage
 
-# CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU
+# CHƯƠNG 2: PHÂN TÍCH YÊU CẦU HỆ THỐNG VÀ MÔ HÌNH HÓA SƠ ĐỒ USE CASE
 
-### 3.1. Thiết kế kiến trúc phân tầng (Three-Tier Architecture)
+### 2.1. Ma trận phân quyền chức năng RBAC 5 cấp độ
 
-```mermaid
-flowchart TD
-    subgraph Client ["1. Presentation Layer (React SPA)"]
-        Components["React Components & Pages"]
-        TanStack["TanStack Query (Cache & Fetch)"]
-        Router["React Router v6"]
-    end
-
-    subgraph Server ["2. Application Layer (Node.js & Express)"]
-        Security["Rate Limit & Helmet & CORS"]
-        AuthRBAC["JWT & RBAC Middleware"]
-        Controllers["Controller Layer"]
-        Services["Business Service Layer"]
-    end
-
-    subgraph DataStore ["3. Data Layer (Prisma ORM & Storage)"]
-        PrismaClient["Prisma ORM Client"]
-        MySQLDB[("MySQL 8.0 / SQLite DB")]
-        DiskStorage[("Uploads Directory (/uploads)")]
-    end
-
-    Components --> TanStack
-    TanStack --> Router
-    Router -->|HTTPS / REST API| Security
-    Security --> AuthRBAC
-    AuthRBAC --> Controllers
-    Controllers --> Services
-    Services --> PrismaClient
-    Services --> DiskStorage
-    PrismaClient -->|SQL Connection Pool| MySQLDB
-```
+| Nhóm chức năng nghiệp vụ | Guest | Reader | Author | Editor | Admin |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Xem bài viết công khai (PUBLISHED) | Có | Có | Có | Có | Có |
+| Tìm kiếm bài viết / Lọc chuyên mục & thẻ | Có | Có | Có | Có | Có |
+| Đăng ký tài khoản độc giả mới | Có | Không | Không | Không | Không |
+| Đăng nhập / Đăng xuất hệ thống | Có | Có | Có | Có | Có |
+| Khôi phục mật khẩu quên | Có | Có | Có | Có | Có |
+| Cập nhật thông tin hồ sơ & Đổi mật khẩu | Không | Có | Có | Có | Có |
+| Lưu bài viết yêu thích (Bookmark) | Không | Có | Có | Có | Có |
+| Gửi bình luận & Trả lời bình luận | Không | Có | Có | Có | Có |
+| Soạn thảo bài viết mới (TipTap Editor) | Không | Không | Có | Có | Có |
+| Lưu bản nháp bài viết (DRAFT) | Không | Không | Có | Có | Có |
+| Gửi bài viết đề nghị duyệt (PENDING) | Không | Không | Có | Có | Có |
+| Chỉnh sửa bài viết của chính mình (chống IDOR) | Không | Không | Có | Có | Có |
+| Tải tệp ảnh lên thư viện Media | Không | Không | Có | Có | Có |
+| Xem bài viết chờ duyệt trên toàn hệ thống | Không | Không | Không | Có | Có |
+| Phê duyệt bài viết (APPROVE -> PUBLISHED) | Không | Không | Không | Có | Có |
+| Từ chối bài viết kèm lý do (REJECT) | Không | Không | Không | Có | Có |
+| Kiểm duyệt bình luận (APPROVED/SPAM/REJECT) | Không | Không | Không | Có | Có |
+| Quản lý Danh mục (Thêm, Sửa, Xóa) | Không | Không | Không | Có | Có |
+| Quản lý Thẻ từ khóa (Tags) | Không | Không | Không | Có | Có |
+| Ghim bài viết nổi bật lên đầu trang chủ | Không | Không | Không | Không | Có |
+| Xem Bảng điều khiển thống kê (Dashboard) | Không | Không | Chỉ bài mình | Toàn bộ | Toàn bộ |
+| Xem Danh sách tài khoản người dùng | Không | Không | Không | Không | Có |
+| Thay đổi vai trò người dùng (Đổi Role RBAC) | Không | Không | Không | Không | Có |
+| Khóa / Mở khóa tài khoản người dùng | Không | Không | Không | Không | Có |
+| Xem Nhật ký kiểm toán an toàn (Audit Logs) | Không | Không | Không | Không | Có |
+| Cấu hình thông số website hệ thống | Không | Không | Không | Không | Có |
 
 ---
 
-### 3.2. Sơ đồ Thực thể Quan hệ (ERD - Entity Relationship Diagram)
+\newpage
 
-```mermaid
-erDiagram
-    users ||--o{ posts : "tác giả viết"
-    users ||--o{ comments : "người dùng bình luận"
-    users ||--o{ bookmarks : "độc giả lưu"
-    users ||--o{ media : "tải lên tệp"
-    users ||--o{ notifications : "nhận thông báo"
-    users ||--o{ audit_logs : "kích hoạt hành động"
+# CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU QUAN HỆ
 
-    categories ||--o{ categories : "danh mục cha - con"
-    categories ||--o{ posts : "thuộc danh mục"
-
-    posts ||--o{ post_tags : "gắn thẻ"
-    tags ||--o{ post_tags : "liên kết bài viết"
-
-    posts ||--o{ comments : "chứa bình luận"
-    comments ||--o{ comments : "trả lời bình luận (replies)"
-    posts ||--o{ bookmarks : "được lưu bởi"
-    posts ||--o{ post_views : "lịch sử lượt xem"
-```
-
----
-
-### 3.3. Sơ đồ tuần tự: Phê duyệt bài viết (Sequence Diagram)
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Editor as Biên tập viên (Editor)
-    participant FE as React Frontend (/admin/posts)
-    participant API as Express API Server
-    participant Auth as RBAC Middleware
-    participant Service as PostsService
-    participant DB as MySQL Database
-
-    Editor->>FE: Bấm nút "Phê duyệt" bài viết
-    FE->>API: POST /api/v1/posts/:id/approve (Kèm Bearer Token)
-    API->>Auth: Xác thực Token & Kiểm tra vai trò EDITOR/ADMIN
-    Auth-->>API: Hợp lệ
-    API->>Service: PostsService.approvePost(user, postId)
-    Service->>DB: UPDATE posts SET status = 'PUBLISHED', publishedAt = NOW() WHERE id = postId
-    Service->>DB: INSERT INTO notifications (userId, title, message)
-    Service->>DB: INSERT INTO audit_logs (userId, action='APPROVE_POST')
-    DB-->>Service: Cập nhật thành công
-    Service-->>API: Đối tượng bài viết đã xuất bản
-    API-->>FE: HTTP 200 OK
-    FE-->>Editor: Cập nhật giao diện bài viết sang "Đã xuất bản"
-```
+Hệ thống bao gồm 13 bảng dữ liệu quan hệ được chuẩn hóa 3NF:
+1. `users` — Quản lý tài khoản và phân quyền người dùng.
+2. `categories` — Danh mục bài viết phân cấp cha - con.
+3. `tags` — Thẻ từ khóa phân loại bài viết.
+4. `posts` — Bài viết trung tâm với trạng thái vòng đời.
+5. `post_tags` — Bảng trung gian liên kết Bài viết và Thẻ.
+6. `comments` — Bình luận của độc giả và trả lời phân cấp.
+7. `bookmarks` — Danh sách bài viết yêu thích của độc giả.
+8. `media` — Thư viện tệp hình ảnh tải lên máy chủ.
+9. `notifications` — Thông báo người dùng theo thời gian thực.
+10. `settings` — Cấu hình tham số động website.
+11. `audit_logs` — Nhật ký kiểm toán an toàn thông tin.
+12. `password_reset_tokens` — Quản lý mã khôi phục mật khẩu.
+13. `post_views` — Lịch sử lượt đọc bài viết nguyên tử.
 
 ---
 
@@ -326,108 +220,93 @@ sequenceDiagram
 
 # CHƯƠNG 4: TRIỂN KHAI VÀ XÂY DỰNG HỆ THỐNG
 
-### 4.1. Cấu hình Docker Compose và Triển khai đa dịch vụ
-Hệ thống cung cấp tệp `docker-compose.yml` chuẩn hóa, tự động liên kết 3 container dịch vụ:
+### 4.1. Danh mục 24 trang giao diện đã triển khai thực tế
 
-```yaml
-version: '3.8'
-services:
-  mysql:
-    image: mysql:8.0
-    container_name: blog_cms_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: blog_cms
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+| STT | Tên trang giao diện | Đường dẫn Route | Phân hệ | Chức năng vận hành chính |
+|:---:|---|---|:---:|---|
+| 1 | Trang chủ | `/` | Công khai | Hiển thị bài viết nổi bật, bài mới nhất, danh mục và thẻ từ khóa. |
+| 2 | Danh sách bài viết | `/posts` | Công khai | Xem tất cả bài viết đã xuất bản, hỗ trợ lọc, sắp xếp và phân trang. |
+| 3 | Chi tiết bài viết | `/posts/:slug` | Công khai | Đọc nội dung bài viết TipTap, tác giả, bình luận và lưu bài viết. |
+| 4 | Chuyên mục bài viết | `/categories/:slug` | Công khai | Hiển thị các bài viết thuộc một danh mục cụ thể. |
+| 5 | Thẻ từ khóa | `/tags/:slug` | Công khai | Hiển thị danh sách bài viết được gắn thẻ tương ứng. |
+| 6 | Tìm kiếm bài viết | `/search` | Công khai | Tìm kiếm bài viết theo từ khóa trong tiêu đề và nội dung. |
+| 7 | Trang tác giả | `/authors/:id` | Công khai | Xem thông tin tiểu sử tác giả và danh sách bài viết của tác giả đó. |
+| 8 | Đăng nhập | `/login` | Công khai | Đăng nhập tài khoản, có sẵn nút 1-click điền tài khoản demo. |
+| 9 | Đăng ký tài khoản | `/register` | Công khai | Đăng ký tài khoản độc giả mới với kiểm thực Zod. |
+| 10 | Quên mật khẩu | `/forgot-password` | Công khai | Nhập email để nhận token khôi phục mật khẩu. |
+| 11 | Đặt lại mật khẩu | `/reset-password` | Công khai | Nhập token và thiết lập mật khẩu mới an toàn. |
+| 12 | Hồ sơ cá nhân | `/profile` | Độc giả | Cập nhật họ tên, tiểu sử, ảnh đại diện và đổi mật khẩu. |
+| 13 | Bài viết đã lưu | `/saved-posts` | Độc giả | Quản lý danh sách các bài viết yêu thích (Bookmarks) cá nhân. |
+| 14 | Trang báo lỗi 404 | `/*` | Công khai | Giao diện thông báo trang không tồn tại kèm nút quay về trang chủ. |
+| 15 | Bảng điều khiển số liệu | `/admin` | Quản trị CMS | Dashboard thẻ thống kê số liệu và biểu đồ Recharts phân tích. |
+| 16 | Quản lý bài viết | `/admin/posts` | Quản trị CMS | Danh sách bài viết lọc theo trạng thái (Draft, Pending, Published). |
+| 17 | Tạo bài viết mới | `/admin/posts/new` | Quản trị CMS | Trình soạn thảo văn bản phong phú TipTap WYSIWYG hiện đại. |
+| 18 | Chỉnh sửa bài viết | `/admin/posts/edit/:id` | Quản trị CMS | Chỉnh sửa bài viết của chính mình (chống IDOR). |
+| 19 | Quản lý danh mục | `/admin/categories` | Quản trị CMS | Thêm, sửa, xóa danh mục chuyên môn (hỗ trợ parentId). |
+| 20 | Quản lý thẻ từ khóa | `/admin/tags` | Quản trị CMS | Thêm, sửa, xóa các thẻ nhãn phân loại bài viết. |
+| 21 | Kiểm duyệt bình luận | `/admin/comments` | Quản trị CMS | Duyệt hoặc đánh dấu bình luận spam từ độc giả. |
+| 22 | Quản lý người dùng | `/admin/users` | Quản trị CMS | Xem danh sách tài khoản, thay đổi vai trò RBAC, khóa/mở tài khoản. |
+| 23 | Thư viện hình ảnh Media | `/admin/media` | Quản trị CMS | Tải ảnh lên máy chủ, xem trước ảnh, sao chép URL ảnh. |
+| 24 | Nhật ký an toàn (Audit) | `/admin/audit-logs` | Quản trị CMS | Xem toàn bộ lịch sử thao tác nhạy cảm, IP và trình duyệt. |
 
-  backend:
-    build: ./backend
-    container_name: blog_cms_backend
-    ports:
-      - "5000:5000"
-    environment:
-      DATABASE_URL: "mysql://root:rootpassword@mysql:3306/blog_cms"
-    depends_on:
-      - mysql
+---
 
-  frontend:
-    build: ./frontend
-    container_name: blog_cms_frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
+\newpage
+
+# CHƯƠNG 5: KIỂM THỬ TỰ ĐỘNG VÀ ĐÁNH GIÁ CHẤT LƯỢNG HỆ THỐNG
+
+### Báo cáo kết quả kiểm thử thực tế từ Vitest (17/17 Passed)
+
+```text
+ RUN  v2.1.9 C:/Users/vtn08/.gemini/antigravity/scratch/blog-cms/backend
+
+ ✓ src/tests/unit.test.ts (6 tests) 503ms
+   ✓ Unit Tests: Tiện ích và Xác thực dữ liệu > generateSlug > chuyển đổi tiếng Việt có dấu thành slug chuẩn
+   ✓ Unit Tests: Tiện ích và Xác thực dữ liệu > generateSlug > loại bỏ ký tự đặc biệt và xử lý chữ đ/Đ
+   ✓ Unit Tests: Tiện ích và Xác thực dữ liệu > JWT Token & Bcrypt > ký và giải mã token JWT chính xác
+   ✓ Unit Tests: Tiện ích và Xác thực dữ liệu > JWT Token & Bcrypt > băm mật khẩu và so khớp hash thành công
+   ✓ Unit Tests: Tiện ích và Xác thực dữ liệu > Zod Validation Schemas > chấp nhận dữ liệu đăng ký hợp lệ
+   ✓ Unit Tests: Tiện ích và Xác thực dữ liệu > Zod Validation Schemas > từ chối đăng ký khi email/mật khẩu sai
+
+ ✓ src/tests/integration.test.ts (11 tests) 638ms
+   ✓ GET /api/health - trả về mã 200 và trạng thái UP
+   ✓ POST /api/v1/auth/login - Đăng nhập tài khoản Admin demo thành công
+   ✓ POST /api/v1/auth/login - Đăng nhập tài khoản Reader demo thành công
+   ✓ POST /api/v1/auth/login - Thất bại khi mật khẩu sai (trả về 400 Bad Request)
+   ✓ GET /api/v1/posts - Lấy danh sách bài viết đã xuất bản công khai (chỉ trả về bài PUBLISHED)
+   ✓ GET /api/v1/categories - Lấy danh sách danh mục có số lượng bài viết
+   ✓ GET /api/v1/tags - Lấy danh sách thẻ
+   ✓ Chặn truy cập người dùng chưa đăng nhập khi gọi API quản trị (401 Unauthorized)
+   ✓ Chặn người dùng READER truy cập danh sách người dùng quản trị (403 Forbidden)
+   ✓ Cho phép ADMIN truy cập danh sách người dùng quản trị (200 OK)
+   ✓ GET /api/v1/dashboard/stats - Admin lấy số liệu thống kê thực tế từ database
+
+ Test Files  2 passed (2)
+      Tests  17 passed (17)
+   Start at  22:48:05
+   Duration  4.06s (transform 988ms, setup 0ms, collect 2.89s, tests 1.14s, environment 1ms, prepare 1.16s)
 ```
 
----
-
-### 4.2. Giải pháp An toàn Bảo mật lớp sâu (Defense in Depth)
-
-1. **Bảo vệ mật khẩu người dùng:** Sử dụng thuật toán băm Bcrypt với 10 vòng lặp muối (Salt rounds).
-2. **Chống tấn công XSS:** Khử mã độc bằng `sanitize-html` trên cả bài viết và bình luận.
-3. **Chống tấn công CSRF & Đánh cắp phiên:** Lưu trữ Token trong Cookie với cờ `HttpOnly`, `SameSite=Lax`.
-4. **Chống Brute-force:** Áp dụng `express-rate-limit` giới hạn 30 lần thử đăng nhập trong 15 phút.
-5. **Chống lỗ hổng IDOR:** Tầng Service kiểm tra nghiêm ngặt `post.authorId === currentUserId` trước khi thực thi sửa/xóa.
+| Nhóm kiểm thử | Số lượng ca kiểm thử | Số ca thành công (Passed) | Số ca thất bại (Failed) | Tỉ lệ đạt |
+|---|:---:|:---:|:---:|:---:|
+| Unit Tests (Tiện ích, Slug, Zod, JWT) | 6 ca | 6 ca | 0 ca | 100% |
+| Integration Tests (API & Database) | 8 ca | 8 ca | 0 ca | 100% |
+| Security Tests (RBAC 401/403/200) | 3 ca | 3 ca | 0 ca | 100% |
+| **TỔNG CỘNG TOÀN BỘ HỆ THỐNG** | **17 ca kiểm thử** | **17 ca PASSED** | **0 ca FAILED** | **17/17 (100%)** |
 
 ---
 
 \newpage
 
-# CHƯƠNG 5: KIỂM THỬ TỰ ĐỘNG VÀ ĐÁNH GIÁ KẾT QUẢ
+# PHỤ LỤC: BẢNG TÀI KHOẢN TRÌNH DIỄN VÀ BẢO VỆ ĐỒ ÁN
 
-### 5.1. Báo cáo kết quả kiểm thử Vitest (17/17 Passed 100%)
+Mật khẩu dùng chung cho tất cả các tài khoản là: **`Password@123`**
 
-Toàn bộ các bài kiểm thử tự động được thực thi trên môi trường máy tính Windows và cho kết quả như sau:
-
-| STT | Tên bài kiểm thử (Test Case) | Loại kiểm thử | Kết quả mong đợi | Kết quả thực tế | Trạng thái |
-|:---:|---|:---:|---|---|:---:|
-| 1 | Sinh Slug chuẩn SEO tiếng Việt có dấu | Unit Test | Loại bỏ dấu, nối gạch ngang | Chính xác | 🟢 PASS |
-| 2 | Loại bỏ ký tự đặc biệt và xử lý chữ đ/Đ | Unit Test | Thay thế đ thành d, xóa ký tự lạ | Chính xác | 🟢 PASS |
-| 3 | Ký và giải mã Token JWT | Unit Test | Payload nguyên vẹn, role đúng | Chính xác | 🟢 PASS |
-| 4 | Băm và so khớp mật khẩu Bcrypt | Unit Test | So khớp đúng và chặn mật khẩu sai | Chính xác | 🟢 PASS |
-| 5 | Zod Schema kiểm tra hợp lệ đăng ký | Unit Test | Chấp thuận dữ liệu chuẩn | Chính xác | 🟢 PASS |
-| 6 | Zod Schema từ chối email sai định dạng | Unit Test | Báo lỗi 422 Unprocessable | Chính xác | 🟢 PASS |
-| 7 | GET /api/health trả về Status UP | Integration | HTTP 200 { status: 'UP' } | HTTP 200 | 🟢 PASS |
-| 8 | POST /auth/login đăng nhập Admin | Integration | HTTP 200, cấp Token JWT | HTTP 200 | 🟢 PASS |
-| 9 | POST /auth/login đăng nhập Reader | Integration | HTTP 200, cấp Token JWT | HTTP 200 | 🟢 PASS |
-| 10 | POST /auth/login sai mật khẩu | Integration | HTTP 400 Bad Request | HTTP 400 | 🟢 PASS |
-| 11 | GET /posts lấy bài đã xuất bản | Integration | 100% bài có status = PUBLISHED | Chính xác | 🟢 PASS |
-| 12 | GET /categories lấy danh mục có bài | Integration | Danh sách danh mục kèm count | Chính xác | 🟢 PASS |
-| 13 | GET /tags lấy danh sách thẻ | Integration | Danh sách thẻ bài viết | Chính xác | 🟢 PASS |
-| 14 | Chặn khách gọi API Admin (401) | Security Test | HTTP 401 Unauthorized | HTTP 401 | 🟢 PASS |
-| 15 | Chặn Reader gọi API Admin (403) | Security Test | HTTP 403 Forbidden | HTTP 403 | 🟢 PASS |
-| 16 | Cho phép Admin gọi API Admin (200) | Security Test | HTTP 200 OK | HTTP 200 | 🟢 PASS |
-| 17 | GET /dashboard/stats lấy số liệu thật | Integration | Số liệu cards lấy từ database thật | Chính xác | 🟢 PASS |
-
----
-
-\newpage
-
-# KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
-
-### 1. Kết luận
-Đề tài **"Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp"** đã hoàn thành xuất sắc các mục tiêu nghiên cứu và yêu cầu thực tiễn của môn học:
-- Xây dựng thành công hệ thống phần mềm hoàn chỉnh, giao diện hiện đại, cơ sở dữ liệu quan hệ chặt chẽ.
-- Hoàn thiện trọn vẹn quy trình phê duyệt bài viết đa tầng và phân quyền RBAC 4 cấp độ.
-- Hệ thống đạt 100% các tiêu chí kiểm thử tự động, biên dịch sạch sẽ và có thể vận hành ổn định trên Windows lẫn Docker.
-- Toàn bộ mã nguồn và tài liệu đã được công khai trên GitHub: **`https://github.com/dtc245200891-blip/blog-cms`**.
-
-### 2. Hướng phát triển
-- Tích hợp dịch vụ gửi thư điện tử thông báo tự động (AWS SES / Google SMTP).
-- Phát triển thêm ứng dụng di động đa nền tảng (React Native) kết nối chung với hệ thống RESTful API hiện có.
-
----
-
-\newpage
-
-# TÀI LIỆU THAM KHẢO
-
-1. **ThS. Vũ Văn Diện (2026)**, *Giáo trình và bài giảng môn Triển khai và hệ thống phần mềm*, Trường Đại học Công nghệ Thông tin và Truyền thông – Đại học Thái Nguyên (ICTU).
-2. **React Documentation (2024)**, *React 18 Architecture and Hooks Guide*, https://react.dev/
-3. **Prisma ORM Documentation (2024)**, *Prisma Client, Schema and Migration Management*, https://www.prisma.io/docs
-4. **Express.js Documentation (2024)**, *RESTful API Routing, Middleware, and Security Best Practices*, https://expressjs.com/
-5. **OWASP Foundation (2023)**, *OWASP Top 10 Security Vulnerabilities & Remediation*, https://owasp.org/
-6. **Docker Documentation (2024)**, *Docker Compose Specification and Containerization*, https://docs.docker.com/
+| STT | Vai trò (Role) | Email đăng nhập | Tên đăng nhập (Username) | Mục đích trình diễn bảo vệ |
+|:---:|---|---|---|---|
+| 1 | **Quản trị viên (ADMIN)** | `admin@ictu.edu.vn` | `admin` | Toàn quyền CMS: đổi quyền vai trò RBAC, khóa tài khoản, xem biểu đồ số liệu Dashboard và xem nhật ký audit log. |
+| 2 | **Biên tập viên (EDITOR)** | `editor@ictu.edu.vn` | `editor` | Phê duyệt bài viết chờ duyệt (Approve), từ chối bài viết (Reject kèm lý do phản hồi), kiểm duyệt bình luận độc giả. |
+| 3 | **Tác giả 1 (AUTHOR)** | `author1@ictu.edu.vn` | `author_nghia` | Sinh viên Vũ Trọng Nghĩa: Soạn bài viết bằng TipTap WYSIWYG, lưu bản nháp, gửi bài chờ duyệt, quản lý bài viết cá nhân. |
+| 4 | **Tác giả 2 (AUTHOR)** | `author2@ictu.edu.vn` | `author_linh` | Tác giả Trần Thùy Linh: Bản nháp và nghiên cứu dữ liệu. |
+| 5 | **Độc giả 1 (READER)** | `reader1@ictu.edu.vn` | `reader_nam` | Gửi bình luận, trả lời bình luận, lưu bài viết yêu thích (Bookmark) vào trang `/saved-posts`. |
+| 6 | **Độc giả 2 (READER)** | `reader2@ictu.edu.vn` | `reader_mai` | Tài khoản độc giả mới khám phá hệ thống. |

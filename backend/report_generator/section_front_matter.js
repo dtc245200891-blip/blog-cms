@@ -20,51 +20,51 @@ function getFrontMatterChildren(logoData) {
   const elements = [];
 
   // ==========================================
-  // PHẦN 1: TRANG PHỤ BÌA & PHIẾU ĐÁNH GIÁ CỦA GIẢNG VIÊN HƯỚNG DẪN
+  // PHẦN 1: PHIẾU ĐÁNH GIÁ CỦA GIẢNG VIÊN HƯỚNG DẪN
   // ==========================================
   elements.push(
     p('BỘ GIÁO DỤC VÀ ĐÀO TẠO — ĐẠI HỌC THÁI NGUYÊN', {
       align: AlignmentType.CENTER,
       bold: true,
-      size: 26,
-      after: 40,
+      size: 25,
+      after: 30,
     }),
     p('TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG (ICTU)', {
       align: AlignmentType.CENTER,
       bold: true,
       color: COLORS.NAVY_PRIMARY,
-      size: 26,
-      after: 60,
+      size: 25,
+      after: 40,
     }),
     p('KHOA CÔNG NGHỆ THÔNG TIN', {
       align: AlignmentType.CENTER,
       bold: true,
-      size: 24,
+      size: 23,
       color: '475569',
-      after: 240,
+      after: 160,
     }),
     p('PHIẾU NHẬN XÉT VÀ ĐÁNH GIÁ ĐỒ ÁN MÔN HỌC', {
       align: AlignmentType.CENTER,
       bold: true,
-      size: 30,
+      size: 28,
       color: COLORS.NAVY_PRIMARY,
-      after: 200,
+      after: 140,
     }),
     p('MÔN HỌC: TRIỂN KHAI VÀ HỆ THỐNG PHẦN MỀM', {
       align: AlignmentType.CENTER,
       bold: true,
-      size: 26,
+      size: 25,
       color: '0284C7',
-      after: 240,
+      after: 180,
     }),
 
-    p('1. Thông tin chung:', { bold: true, size: 26, after: 80 }),
+    p('1. Thông tin chung:', { bold: true, size: 25, after: 60 }),
     bullet('Họ và tên sinh viên: Vũ Trọng Nghĩa — Mã số sinh viên: DTC245200891'),
     bullet('Lớp chuyên ngành: CNTT K23L (Khóa 23) — Khoa Công nghệ Thông tin'),
     bullet('Tên đề tài: Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp'),
     bullet('Giảng viên hướng dẫn: ThS. Vũ Văn Diện'),
 
-    p('2. Đánh giá chi tiết của Giảng viên hướng dẫn:', { bold: true, size: 26, before: 140, after: 80 }),
+    p('2. Đánh giá chi tiết của Giảng viên hướng dẫn:', { bold: true, size: 25, before: 100, after: 60 }),
     createTable(
       ['STT', 'Tiêu chí đánh giá', 'Thang điểm', 'Điểm đánh giá', 'Nhận xét chi tiết của Giảng viên'],
       [
@@ -107,10 +107,7 @@ function getFrontMatterChildren(logoData) {
       { colWidths: [8, 38, 14, 14, 26] }
     ),
 
-    p('Nhận xét chung và ý kiến kết luận của Giảng viên:', { bold: true, size: 26, before: 160, after: 80 }),
-    p(
-      '........................................................................................................................................................................................................'
-    ),
+    p('Nhận xét chung và ý kiến kết luận của Giảng viên:', { bold: true, size: 25, before: 120, after: 60 }),
     p(
       '........................................................................................................................................................................................................'
     ),
@@ -121,19 +118,19 @@ function getFrontMatterChildren(logoData) {
     p('Thái Nguyên, ngày ..... tháng ..... năm 2026', {
       align: AlignmentType.RIGHT,
       italics: true,
-      before: 160,
-      after: 60,
+      before: 120,
+      after: 40,
     }),
     p('GIẢNG VIÊN HƯỚNG DẪN', {
       align: AlignmentType.RIGHT,
       bold: true,
-      after: 400,
+      after: 320,
     }),
     p('ThS. Vũ Văn Diện', {
       align: AlignmentType.RIGHT,
       bold: true,
       color: COLORS.NAVY_PRIMARY,
-      after: 200,
+      after: 160,
     }),
 
     // ==========================================
@@ -156,13 +153,13 @@ function getFrontMatterChildren(logoData) {
       italics: true,
       bold: true,
       align: AlignmentType.RIGHT,
-      before: 120,
-      after: 60,
+      before: 100,
+      after: 40,
     }),
     p('Sinh viên thực hiện: Vũ Trọng Nghĩa (DTC245200891)', {
       italics: true,
       align: AlignmentType.RIGHT,
-      after: 200,
+      after: 160,
     }),
 
     // ==========================================
@@ -170,59 +167,57 @@ function getFrontMatterChildren(logoData) {
     // ==========================================
     h1('MỤC LỤC BÁO CÁO ĐỒ ÁN', { pageBreakBefore: true }),
     createTable(
-      ['Nội dung các phần và chương mục', 'Số trang dự kiến'],
+      ['Nội dung các phần và chương mục', 'Trang'],
       [
-        ['LỜI CẢM ƠN', 'Trang iii'],
-        ['DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT', 'Trang v'],
-        ['DANH MỤC CÁC BẢNG BIỂU', 'Trang vi'],
-        ['DANH MỤC CÁC HÌNH VẼ VÀ SƠ ĐỒ', 'Trang vii'],
-        ['LỜI MỞ ĐẦU', 'Trang 1'],
-        ['   1. Tính cấp thiết của đề tài', 'Trang 1'],
-        ['   2. Mục tiêu và nhiệm vụ nghiên cứu', 'Trang 2'],
-        ['   3. Đối tượng và phạm vi nghiên cứu', 'Trang 2'],
-        ['   4. Phương pháp nghiên cứu và cách tiếp cận', 'Trang 3'],
-        ['   5. Ý nghĩa khoa học và giá trị thực tiễn của đề tài', 'Trang 3'],
-        ['   6. Bố cục tổng thể của báo cáo đồ án', 'Trang 4'],
-        ['CHƯƠNG 1: TỔNG QUAN HỆ THỐNG VÀ CƠ SỞ LÝ THUYẾT - CÔNG NGHỆ ÁP DỤNG', 'Trang 5'],
-        ['   1.1. Khái quát về Hệ thống quản trị nội dung (CMS) và Blog tin tức', 'Trang 5'],
-        ['   1.2. Cơ sở lý thuyết và công nghệ tầng giao diện (Frontend)', 'Trang 8'],
-        ['   1.3. Cơ sở lý thuyết và công nghệ tầng dịch vụ & CSDL (Backend)', 'Trang 11'],
-        ['   1.4. Công nghệ đóng gói, tự động hóa và kiểm thử', 'Trang 14'],
-        ['CHƯƠNG 2: PHÂN TÍCH YÊU CẦU HỆ THỐNG VÀ MÔ HÌNH HÓA SƠ ĐỒ USE CASE', 'Trang 17'],
-        ['   2.1. Khảo sát hiện trạng và quy trình nghiệp vụ xuất bản nội dung', 'Trang 17'],
-        ['   2.2. Phân tích yêu cầu chức năng (Functional Requirements - 26 yêu cầu)', 'Trang 18'],
-        ['   2.3. Phân tích yêu cầu phi chức năng (Non-Functional Requirements)', 'Trang 21'],
-        ['   2.4. Xác định các tác nhân và ma trận phân quyền (RBAC Matrix)', 'Trang 22'],
-        ['   2.5. Mô hình hóa biểu đồ Use Case hệ thống', 'Trang 25'],
-        ['   2.6. Đặc tả kịch bản Use Case chi tiết (8 ca sử dụng trọng tâm)', 'Trang 27'],
-        ['CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU QUAN HỆ', 'Trang 31'],
-        ['   3.1. Thiết kế kiến trúc tổng thể phần mềm (Three-Tier Architecture)', 'Trang 31'],
-        ['   3.2. Thiết kế Cơ sở dữ liệu quan hệ (ERD - 13 thực thể chuẩn hóa)', 'Trang 33'],
-        ['   3.3. Bảng từ điển dữ liệu chi tiết cho 13 bảng CSDL', 'Trang 35'],
-        ['   3.4. Thiết kế biểu đồ tuần tự (Sequence Diagrams)', 'Trang 41'],
-        ['   3.5. Thiết kế giao diện lập trình ứng dụng RESTful API (25 Endpoints)', 'Trang 43'],
-        ['CHƯƠNG 4: TRIỂN KHAI VÀ XÂY DỰNG HỆ THỐNG (MÔN TRIỂN KHAI HỆ THỐNG)', 'Trang 47'],
-        ['   4.1. Quy trình triển khai phần mềm chuẩn công nghiệp (Deployment Lifecycle)', 'Trang 47'],
-        ['   4.2. Xây dựng và cài đặt Tầng Backend API', 'Trang 49'],
-        ['   4.3. Xây dựng và cài đặt Tầng Frontend SPA', 'Trang 53'],
-        ['   4.4. Container hóa hệ thống với Docker & Docker Compose', 'Trang 56'],
-        ['   4.5. Thiết kế và cài đặt các giải pháp an toàn thông tin lớp sâu (Defense in Depth)', 'Trang 59'],
-        ['   4.6. Danh mục 24 trang giao diện đã triển khai thực tế', 'Trang 62'],
-        ['CHƯƠNG 5: KIỂM THỬ TỰ ĐỘNG VÀ ĐÁNH GIÁ CHẤT LƯỢNG HỆ THỐNG', 'Trang 65'],
-        ['   5.1. Chiến lược và kế hoạch kiểm thử tự động (Test Strategy)', 'Trang 65'],
-        ['   5.2. Danh mục và kết quả các ca kiểm thử đơn vị (Unit Tests)', 'Trang 66'],
-        ['   5.3. Danh mục và kết quả các ca kiểm thử tích hợp (Integration Tests)', 'Trang 67'],
-        ['   5.4. Danh mục và kết quả các ca kiểm thử an toàn bảo mật (Security Tests)', 'Trang 68'],
-        ['   5.5. Tổng hợp báo cáo kết quả kiểm thử thực tế từ Vitest (17/17 Passed)', 'Trang 69'],
-        ['   5.6. Kịch bản kiểm thử đầu-cuối (E2E Test Scenario 12 bước)', 'Trang 70'],
-        ['KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN TIẾP THEO', 'Trang 72'],
-        ['TÀI LIỆU THAM KHẢO', 'Trang 74'],
-        ['PHỤ LỤC A: HƯỚNG DẪN CÀI ĐẶT VÀ VẬN HÀNH TRÊN MÁY TÍNH WINDOWS', 'Trang 75'],
-        ['PHỤ LỤC B: BẢNG TÀI KHOẢN TRÌNH DIỄN VÀ BẢO VỆ ĐỒ ÁN', 'Trang 77'],
-        ['PHỤ LỤC C: TOÀN VĂN LƯỢC ĐỒ CƠ SỞ DỮ LIỆU PRISMA SCHEMA', 'Trang 78'],
-        ['PHỤ LỤC D: CẤU HÌNH CONTAINER HÓA DOCKER COMPOSE', 'Trang 82'],
+        ['LỜI CẢM ƠN', 'iii'],
+        ['DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT', 'v'],
+        ['DANH MỤC CÁC BẢNG BIỂU VÀ HÌNH VẼ', 'vi'],
+        ['LỜI MỞ ĐẦU', '1'],
+        ['   1. Tính cấp thiết của đề tài', '1'],
+        ['   2. Mục tiêu và nhiệm vụ nghiên cứu', '2'],
+        ['   3. Đối tượng và phạm vi nghiên cứu', '2'],
+        ['   4. Phương pháp nghiên cứu và cách tiếp cận', '3'],
+        ['   5. Ý nghĩa khoa học và giá trị thực tiễn của đề tài', '3'],
+        ['   6. Bố cục tổng thể của báo cáo đồ án', '4'],
+        ['CHƯƠNG 1: TỔNG QUAN HỆ THỐNG VÀ CƠ SỞ LÝ THUYẾT - CÔNG NGHỆ ÁP DỤNG', '5'],
+        ['   1.1. Khái quát về Hệ thống quản trị nội dung (CMS) và Blog tin tức', '5'],
+        ['   1.2. Cơ sở lý thuyết và công nghệ tầng giao diện (Frontend)', '7'],
+        ['   1.3. Cơ sở lý thuyết và công nghệ tầng dịch vụ & CSDL (Backend)', '10'],
+        ['   1.4. Công nghệ đóng gói, tự động hóa và kiểm thử', '12'],
+        ['CHƯƠNG 2: PHÂN TÍCH YÊU CẦU HỆ THỐNG VÀ MÔ HÌNH HÓA SƠ ĐỒ USE CASE', '14'],
+        ['   2.1. Khảo sát hiện trạng và quy trình nghiệp vụ xuất bản nội dung', '14'],
+        ['   2.2. Phân tích yêu cầu chức năng (Functional Requirements - 26 yêu cầu)', '15'],
+        ['   2.3. Phân tích yêu cầu phi chức năng (Non-Functional Requirements)', '17'],
+        ['   2.4. Xác định các tác nhân và ma trận phân quyền (RBAC Matrix)', '18'],
+        ['   2.5. Mô hình hóa biểu đồ Use Case hệ thống', '20'],
+        ['   2.6. Đặc tả kịch bản Use Case chi tiết (4 ca sử dụng trọng tâm)', '21'],
+        ['CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU QUAN HỆ', '24'],
+        ['   3.1. Thiết kế kiến trúc tổng thể phần mềm (Three-Tier Architecture)', '24'],
+        ['   3.2. Thiết kế Cơ sở dữ liệu quan hệ (ERD - 13 thực thể chuẩn hóa)', '25'],
+        ['   3.3. Bảng từ điển dữ liệu chi tiết cho 13 bảng CSDL', '26'],
+        ['   3.4. Thiết kế biểu đồ tuần tự (Sequence Diagrams)', '32'],
+        ['   3.5. Thiết kế giao diện lập trình ứng dụng RESTful API (25 Endpoints)', '33'],
+        ['CHƯƠNG 4: TRIỂN KHAI VÀ XÂY DỰNG HỆ THỐNG (MÔN TRIỂN KHAI HỆ THỐNG)', '35'],
+        ['   4.1. Quy trình triển khai phần mềm chuẩn công nghiệp (Deployment Lifecycle)', '35'],
+        ['   4.2. Xây dựng và cài đặt Tầng Backend API', '36'],
+        ['   4.3. Xây dựng và cài đặt Tầng Frontend SPA', '39'],
+        ['   4.4. Container hóa hệ thống với Docker & Docker Compose', '41'],
+        ['   4.5. Thiết kế và cài đặt các giải pháp an toàn thông tin lớp sâu (Defense in Depth)', '43'],
+        ['   4.6. Danh mục 24 trang giao diện đã triển khai thực tế', '45'],
+        ['CHƯƠNG 5: KIỂM THỬ TỰ ĐỘNG VÀ ĐÁNH GIÁ CHẤT LƯỢNG HỆ THỐNG', '47'],
+        ['   5.1. Chiến lược và kế hoạch kiểm thử tự động (Test Strategy)', '47'],
+        ['   5.2. Danh mục và kết quả các ca kiểm thử đơn vị (Unit Tests)', '48'],
+        ['   5.3. Danh mục và kết quả các ca kiểm thử tích hợp (Integration Tests)', '49'],
+        ['   5.4. Danh mục và kết quả các ca kiểm thử an toàn bảo mật (Security Tests)', '50'],
+        ['   5.5. Tổng hợp báo cáo kết quả kiểm thử thực tế từ Vitest (17/17 Passed)', '50'],
+        ['   5.6. Kịch bản kiểm thử đầu-cuối (E2E Test Scenario 12 bước)', '51'],
+        ['KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN TIẾP THEO', '53'],
+        ['TÀI LIỆU THAM KHẢO', '54'],
+        ['PHỤ LỤC A: HƯỚNG DẪN CÀI ĐẶT VÀ VẬN HÀNH TRÊN MÁY TÍNH WINDOWS', '55'],
+        ['PHỤ LỤC B: BẢNG TÀI KHOẢN TRÌNH DIỄN VÀ BẢO VỆ ĐỒ ÁN', '56'],
+        ['PHỤ LỤC C: LƯỢC ĐỒ CƠ SỞ DỮ LIỆU PRISMA VÀ DOCKER COMPOSE', '57'],
       ],
-      { colWidths: [78, 22] }
+      { colWidths: [82, 18] }
     ),
 
     // ==========================================
@@ -260,52 +255,45 @@ function getFrontMatterChildren(logoData) {
     ),
 
     // ==========================================
-    // PHẦN 5: DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ
+    // PHẦN 5: DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ (KẾT HỢP GỌN GÀNG)
     // ==========================================
     h1('DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ', { pageBreakBefore: true }),
     h2('1. Danh mục các bảng biểu trong đồ án'),
     createTable(
-      ['Ký hiệu bảng', 'Tên nội dung bảng biểu', 'Vị trí trang'],
+      ['Ký hiệu', 'Tên nội dung bảng biểu', 'Chương'],
       [
         ['Bảng 1.1', 'So sánh ưu nhược điểm các mô hình CMS hiện nay', 'Chương 1'],
         ['Bảng 1.2', 'Tổng hợp công nghệ cốt lõi và phiên bản sử dụng trong đề tài', 'Chương 1'],
         ['Bảng 2.1', 'Bảng phân tích 26 yêu cầu chức năng hệ thống', 'Chương 2'],
         ['Bảng 2.2', 'Ma trận phân quyền chức năng RBAC 5 cấp độ', 'Chương 2'],
-        ['Bảng 2.3', 'Đặc tả kịch bản Use Case UC-AUTH-01 (Đăng ký tài khoản)', 'Chương 2'],
-        ['Bảng 2.4', 'Đặc tả kịch bản Use Case UC-AUTH-02 (Đăng nhập hệ thống)', 'Chương 2'],
-        ['Bảng 2.5', 'Đặc tả kịch bản Use Case UC-POST-01 (Soạn thảo bài viết)', 'Chương 2'],
-        ['Bảng 2.6', 'Đặc tả kịch bản Use Case UC-POST-03 (Phê duyệt bài viết)', 'Chương 2'],
+        ['Bảng 2.3', 'Đặc tả kịch bản Use Case UC-AUTH-02 (Đăng nhập hệ thống)', 'Chương 2'],
+        ['Bảng 2.4', 'Đặc tả kịch bản Use Case UC-POST-01 (Soạn thảo bài viết)', 'Chương 2'],
+        ['Bảng 2.5', 'Đặc tả kịch bản Use Case UC-POST-03 (Phê duyệt bài viết)', 'Chương 2'],
+        ['Bảng 2.6', 'Đặc tả kịch bản Use Case UC-POST-04 (Từ chối bài viết)', 'Chương 2'],
         ['Bảng 3.1 - 3.13', 'Bảng từ điển dữ liệu chi tiết cho 13 bảng CSDL quan hệ', 'Chương 3'],
         ['Bảng 3.14', 'Danh mục 25 Endpoint RESTful API Backend chuẩn hóa', 'Chương 3'],
         ['Bảng 4.1', 'Danh mục các biến môi trường cấu hình hệ thống (.env)', 'Chương 4'],
         ['Bảng 4.2', 'Thống kê danh mục 24 trang giao diện đã xây dựng thực tế', 'Chương 4'],
-        ['Bảng 5.1', 'Bảng danh mục 6 ca kiểm thử đơn vị (Unit Tests)', 'Chương 5'],
-        ['Bảng 5.2', 'Bảng danh mục 8 ca kiểm thử tích hợp API (Integration Tests)', 'Chương 5'],
-        ['Bảng 5.3', 'Bảng danh mục 3 ca kiểm thử an toàn phân quyền bảo mật (Security Tests)', 'Chương 5'],
+        ['Bảng 5.1 - 5.3', 'Các ca kiểm thử đơn vị, tích hợp và an toàn bảo mật', 'Chương 5'],
         ['Bảng 5.4', 'Bảng tổng hợp kết quả chạy kiểm thử thực tế từ Vitest (17/17 Passed)', 'Chương 5'],
       ],
-      { colWidths: [20, 60, 20] }
+      { colWidths: [20, 62, 18] }
     ),
 
     h2('2. Danh mục các hình vẽ và sơ đồ kiến trúc'),
     createTable(
-      ['Ký hiệu sơ đồ', 'Tên sơ đồ / Kiến trúc', 'Vị trí trang'],
+      ['Ký hiệu', 'Tên sơ đồ / Kiến trúc kỹ thuật', 'Chương'],
       [
         ['Sơ đồ 2.1', 'Biểu đồ phân cấp quan hệ kế thừa 5 tác nhân người dùng', 'Chương 2'],
         ['Sơ đồ 2.2', 'Biểu đồ Use Case tổng quát toàn hệ thống CMS', 'Chương 2'],
         ['Sơ đồ 2.3', 'Biểu đồ trạng thái vòng đời bài viết (Post Lifecycle)', 'Chương 2'],
         ['Sơ đồ 3.1', 'Kiến trúc phân tầng 3 lớp (Three-Tier Layered Architecture)', 'Chương 3'],
-        ['Sơ đồ 3.2', 'Biểu đồ thành phần chức năng Frontend và Backend Modules', 'Chương 3'],
-        ['Sơ đồ 3.3', 'Sơ đồ Thực thể Quan hệ (ERD - 13 thực thể chuẩn 3NF)', 'Chương 3'],
-        ['Sơ đồ 3.4', 'Sơ đồ tuần tự: Xác thực đăng nhập và sinh JWT Cookie', 'Chương 3'],
-        ['Sơ đồ 3.5', 'Sơ đồ tuần tự: Tác giả tạo bài viết và gửi duyệt', 'Chương 3'],
-        ['Sơ đồ 3.6', 'Sơ đồ tuần tự: Biên tập viên thẩm định và duyệt bài xuất bản', 'Chương 3'],
-        ['Sơ đồ 3.7', 'Sơ đồ tuần tự: Độc giả gửi bình luận và kiểm duyệt chống XSS', 'Chương 3'],
+        ['Sơ đồ 3.2', 'Sơ đồ Thực thể Quan hệ (ERD - 13 thực thể chuẩn 3NF)', 'Chương 3'],
+        ['Sơ đồ 3.3', 'Sơ đồ tuần tự: Biên tập viên thẩm định và duyệt bài xuất bản', 'Chương 3'],
         ['Sơ đồ 4.1', 'Mô hình triển khai container hóa với Docker Compose', 'Chương 4'],
-        ['Sơ đồ 4.2', 'Kiến trúc an toàn thông tin đa tầng (Defense in Depth)', 'Chương 4'],
         ['Sơ đồ 5.1', 'Mô hình Kim tự tháp kiểm thử phần mềm (Test Pyramid)', 'Chương 5'],
       ],
-      { colWidths: [20, 60, 20] }
+      { colWidths: [20, 62, 18] }
     ),
 
     // ==========================================
@@ -320,23 +308,12 @@ function getFrontMatterChildren(logoData) {
       'Mặc dù trên thị trường công nghệ hiện nay đã có nhiều giải pháp phần mềm quản trị nội dung mã nguồn mở lâu đời như WordPress, Drupal hay Joomla, tuy nhiên các hệ sinh thái này sau nhiều năm phát triển đã trở nên rất cồng kềnh, tiêu tốn nhiều tài nguyên máy chủ, kiến trúc nguyên khối (Monolithic) gắn chặt giao diện với cơ sở dữ liệu gây khó khăn cho việc tối ưu tốc độ. Hơn thế nữa, việc phụ thuộc vào hàng chục plugin từ các bên thứ ba tiềm ẩn vô vàn nguy cơ bảo mật, rất khó kiểm soát mã nguồn độc hại, và đặc biệt là không thể đáp ứng linh hoạt các quy trình nghiệp vụ kiểm duyệt đa cấp độ (từ Tác giả soạn thảo, Biên tập viên thẩm định cho đến Quản trị viên điều hành).'
     ),
     p(
-      'Xuất phát từ yêu cầu đào tạo thực tiễn và các chuẩn đầu ra khắt khe của học phần "Triển khai và hệ thống phần mềm" thuộc Khoa Công nghệ Thông tin – Trường Đại học Công nghệ Thông tin và Truyền thông (ICTU), đề tài "Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp" được lựa chọn nghiên cứu và thực hiện. Đề tài nhằm mục đích áp dụng toàn diện các công nghệ hiện đại hàng đầu hiện nay (React 18, TypeScript, Node.js, Express, Prisma ORM, MySQL 8, Vitest và Docker) để kiến tạo một giải pháp CMS độc lập (Decoupled), hiệu năng cao, bảo mật nhiều lớp và sẵn sàng mở rộng quy mô trong thực tế.'
+      'Xuất phát từ yêu cầu đào tạo thực tiễn và các chuẩn đầu ra khắt khe của học phần "Triển khai và hệ thống phần mềm" thuộc Khoa Công nghệ Thông tin – Trường Đại học Công nghệ Thông tin và Truyền thông (ICTU), đề tài "Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp" được lựa chọn nghiên cứu và thực hiện. Đề tài áp dụng toàn diện các công nghệ hiện đại hàng đầu hiện nay (React 18, TypeScript, Node.js, Express, Prisma ORM, MySQL 8, Vitest và Docker) để kiến tạo một giải pháp CMS độc lập (Decoupled), hiệu năng cao, bảo mật nhiều lớp và sẵn sàng mở rộng quy mô trong thực tế.'
     ),
 
     h2('2. Mục tiêu và nhiệm vụ nghiên cứu'),
-    p('Đề tài hướng tới việc hoàn thành đầy đủ cả hai nhóm mục tiêu cốt lõi:'),
-    bullet('Về mặt lý thuyết và phương pháp luận:', {
-      bold: true,
-      runs: [
-        { text: ' Nắm vững toàn diện phương pháp phân tích yêu cầu nghiệp vụ, thiết kế kiến trúc phần mềm 3 tầng phân lớp rõ ràng (Separation of Concerns), thiết kế CSDL quan hệ chuẩn hóa mức 3NF, và làm chủ quy trình phát hành phần mềm hiện đại từ môi trường phát triển cục bộ đến đóng gói container hóa sản xuất.' },
-      ],
-    }),
-    bullet('Về mặt thực nghiệm và sản phẩm phần mềm:', {
-      bold: true,
-      runs: [
-        { text: ' Xây dựng thành công một ứng dụng web Full-stack hoàn chỉnh, có khả năng chạy thật, không lỗi cú pháp, có giao diện người dùng hiện đại đáp ứng 100% Responsive trên mọi thiết bị; thiết lập quy trình kiểm duyệt bài viết chặt chẽ và bộ kiểm thử tự động 100% Passed trước khi bảo vệ trước Hội đồng chấm điểm.' },
-      ],
-    }),
+    bullet('Về mặt lý thuyết: Nắm vững toàn diện phương pháp phân tích yêu cầu nghiệp vụ, thiết kế kiến trúc phần mềm 3 tầng phân lớp rõ ràng (Separation of Concerns), thiết kế CSDL quan hệ chuẩn hóa mức 3NF, và làm chủ quy trình phát hành phần mềm hiện đại từ môi trường phát triển cục bộ đến đóng gói container hóa sản xuất.'),
+    bullet('Về mặt thực nghiệm: Xây dựng thành công một ứng dụng web Full-stack hoàn chỉnh, có khả năng chạy thật, không lỗi cú pháp, có giao diện người dùng hiện đại đáp ứng 100% Responsive trên mọi thiết bị; thiết lập quy trình kiểm duyệt bài viết chặt chẽ và bộ kiểm thử tự động 100% Passed trước khi bảo vệ trước Hội đồng chấm điểm.'),
 
     h2('3. Đối tượng và phạm vi nghiên cứu'),
     bullet('Đối tượng nghiên cứu: Kiến trúc hệ thống quản trị nội dung số; Quy trình biên tập và xuất bản bài viết nhiều cấp; Cơ chế xác thực bảo mật JWT kết hợp HttpOnly Cookie; Kiểm soát truy cập RBAC; Công nghệ container hóa Docker; Kỹ thuật kiểm thử tự động với Vitest.'),
@@ -344,19 +321,15 @@ function getFrontMatterChildren(logoData) {
     bullet('Phạm vi công nghệ: Sử dụng React 18, TypeScript, Vite, Tailwind CSS, TipTap Editor, Recharts ở tầng Frontend; Node.js v24, Express 4.21, Prisma ORM 5.19, MySQL 8.0 ở tầng Backend; Docker & Docker Compose ở tầng triển khai vận hành.'),
 
     h2('4. Phương pháp nghiên cứu và cách tiếp cận'),
-    p(
-      'Đề tài áp dụng kết hợp các phương pháp nghiên cứu khoa học công nghệ thông tin tiên tiến:'
-    ),
     bullet('Phương pháp thu thập và phân tích tài liệu: Nghiên cứu các chuẩn kỹ thuật quốc tế của W3C, tài liệu hướng dẫn phát triển chính thức của React, Prisma, Express, Docker và chuẩn an toàn thông tin OWASP Top 10.'),
     bullet('Phương pháp mô hình hóa hướng đối tượng: Sử dụng hệ thống biểu đồ UML (Use Case, Sequence, Activity, Class) và ERD để đặc tả chính xác cấu trúc và hành vi hệ thống.'),
-    bullet('Phương pháp phát triển phần mềm lặp (Iterative & Agile): Triển khai mã nguồn theo từng module độc lập (Auth -> Posts -> Categories -> Comments -> Media -> Dashboard -> Audit Logs), liên tục kiểm thử đơn vị và kiểm thử tích hợp.'),
+    bullet('Phương pháp phát triển phần mềm lặp (Agile): Triển khai mã nguồn theo từng module độc lập (Auth -> Posts -> Categories -> Comments -> Media -> Dashboard -> Audit Logs), liên tục kiểm thử đơn vị và kiểm thử tích hợp.'),
 
     h2('5. Ý nghĩa khoa học và giá trị thực tiễn của đề tài'),
     bullet('Ý nghĩa khoa học: Minh chứng rõ ràng tính ưu việt của kiến trúc Decoupled Single Page Application kết hợp RESTful API so với kiến trúc nguyên khối Monolithic truyền thống về tốc độ tải, khả năng chịu tải và tính dễ bảo trì.'),
     bullet('Giá trị thực tiễn: Sản phẩm hoàn thiện có thể đưa vào ứng dụng ngay tại các câu lạc bộ học thuật, cổng thông tin nghiên cứu khoa học của sinh viên ICTU, giúp giảm thiểu chi phí bản quyền, nâng cao tính tự chủ công nghệ và bảo vệ an toàn dữ liệu.'),
 
     h2('6. Bố cục tổng thể của báo cáo đồ án'),
-    p('Báo cáo đồ án được kết cấu thành 5 chương nội dung chính cùng các phần phụ trợ chuẩn mực:'),
     bullet('Chương 1: Tổng quan hệ thống và cơ sở lý thuyết - công nghệ áp dụng.'),
     bullet('Chương 2: Phân tích yêu cầu hệ thống và mô hình hóa sơ đồ Use Case.'),
     bullet('Chương 3: Thiết kế kiến trúc phần mềm và cơ sở dữ liệu quan hệ.'),

@@ -22,8 +22,13 @@ import notificationsRoutes from './modules/notifications/notifications.routes';
 import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import settingsRoutes from './modules/settings/settings.routes';
 import auditRoutes from './modules/audit/audit.routes';
+import metricsRoutes from './modules/metrics/metrics.routes';
+import { metricsMiddleware } from './modules/metrics/metrics.middleware';
 
 const app = express();
+
+// Middleware giám sát chỉ số hệ thống Prometheus/Grafana
+app.use(metricsMiddleware);
 
 // Middlewares bảo mật & phân tích
 app.use(
@@ -57,6 +62,10 @@ app.use('/api', generalLimiter);
 app.get('/api/health', (req, res) => {
   return sendSuccess(res, { status: 'UP', timestamp: new Date().toISOString() }, 'Hệ thống Blog/CMS hoạt động bình thường.');
 });
+
+// Endpoint giám sát Prometheus Metrics cho Grafana
+app.use('/metrics', metricsRoutes);
+app.use('/api/v1/metrics', metricsRoutes);
 
 // Định tuyến API v1
 app.use('/api/v1/auth', authRoutes);

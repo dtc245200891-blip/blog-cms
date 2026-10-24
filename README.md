@@ -47,9 +47,11 @@ Hệ thống Blog/CMS được phát triển như một nền tảng xuất bả
   - Express-Rate-Limit (Chống brute-force)
   - Helmet & CORS (Bảo mật HTTP)
   - Multer (Quản lý tải tệp ảnh an toàn)
-- **Kiểm thử & Triển khai:**
-  - Vitest, Supertest
-  - Docker & Docker Compose (MySQL 8)
+- **Kiểm thử, Giám sát & Triển khai:**
+  - Vitest, Supertest (100% kiểm thử tự động)
+  - **Prometheus v2.54** (Thu thập chỉ số thời gian thực từ Backend `/api/v1/metrics`)
+  - **Grafana v11.2** (Trực quan hóa Dashboard hiệu năng hệ thống tại cổng `3001`)
+  - Docker & Docker Compose (MySQL 8, Backend, Frontend, Prometheus, Grafana)
 
 ---
 
@@ -149,10 +151,32 @@ Khi báo cáo trước Giảng viên hướng dẫn và Hội đồng, sinh viê
    - Xem thống kê Dashboard và biểu đồ phân bố bài viết theo danh mục (lấy từ database thật).
    - Vào `/admin/users`: Thử đổi vai trò của người dùng hoặc khóa tài khoản.
    - Vào `/admin/audit-logs`: Kiểm tra lịch sử toàn bộ thao tác vừa diễn ra trên hệ thống.
+7. **Giám sát hệ thống (DevOps Monitoring):**
+   - Mở Dashboard quản trị hoặc thanh menu bên trái, bấm nút **Giám sát Grafana** (hoặc truy cập `http://localhost:3001`).
+   - Trình diễn cho giảng viên biểu đồ RPS, thời gian phản hồi (p95 latency), mã HTTP 2xx/4xx/5xx và tình trạng bộ nhớ RAM/CPU được thu thập từ backend `/api/v1/metrics`.
 
 ---
 
-## 6. KIỂM THỬ VÀ ĐÓNG GÓI SẢN PHẨM (BUILD)
+## 6. HƯỚNG DẪN VẬN HÀNH GIÁM SÁT GRAFANA & PROMETHEUS
+
+Hệ thống được tích hợp sẵn toàn bộ cấu hình giám sát phục vụ môn học **Triển khai và hệ thống phần mềm**:
+
+### 1. Khởi động cụm giám sát qua Docker Compose
+```powershell
+docker-compose up -d prometheus grafana
+```
+*(Nếu muốn chạy toàn bộ cả MySQL, Backend, Frontend, Prometheus, Grafana thì chỉ cần chạy `docker-compose up -d`)*
+
+### 2. Truy cập dịch vụ giám sát:
+- **Grafana Dashboard:** `http://localhost:3001`
+  - Tài khoản mặc định: `admin` / Mật khẩu: `admin`
+  - Dashboard đã được nạp sẵn tự động: **ICTU Blog/CMS - Giám sát Hệ thống (Vũ Trọng Nghĩa - K23L)**.
+- **Prometheus Server:** `http://localhost:9090` (Kiểm tra targets tại `http://localhost:9090/targets`).
+- **Backend Prometheus Metrics Endpoint:** `http://localhost:5000/api/v1/metrics` (hoặc `http://localhost:5000/metrics`).
+
+---
+
+## 7. KIỂM THỬ VÀ ĐÓNG GÓI SẢN PHẨM (BUILD)
 
 ### 1. Chạy bài kiểm thử tự động
 ```powershell

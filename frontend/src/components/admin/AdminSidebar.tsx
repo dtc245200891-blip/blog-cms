@@ -14,6 +14,8 @@ import {
   ShieldCheck,
   ArrowLeft,
   GraduationCap,
+  Activity,
+  ExternalLink,
 } from 'lucide-react';
 
 export const AdminSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
@@ -84,6 +86,13 @@ export const AdminSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = 
       icon: Settings,
       roles: ['ADMIN'],
     },
+    {
+      to: 'http://localhost:3001',
+      label: 'Giám sát Grafana',
+      icon: Activity,
+      roles: ['ADMIN', 'EDITOR'],
+      isExternal: true,
+    },
   ];
 
   const filteredNavItems = navItems.filter((item) =>
@@ -140,8 +149,25 @@ export const AdminSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = 
           <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider px-3 mb-2">
             Quản trị nội dung
           </p>
-          {filteredNavItems.map((item) => {
+          {filteredNavItems.map((item: any) => {
             const Icon = item.icon;
+            if (item.isExternal) {
+              return (
+                <a
+                  key={item.to}
+                  href={item.to}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-slate-800/70 transition border border-amber-500/20 my-1 bg-amber-500/5"
+                >
+                  <div className="flex items-center space-x-3 truncate">
+                    <Icon className="w-4 h-4 flex-shrink-0 text-amber-400 animate-pulse" />
+                    <span className="truncate">{item.label}</span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5 text-amber-400/70 shrink-0" />
+                </a>
+              );
+            }
             return (
               <NavLink
                 key={item.to}

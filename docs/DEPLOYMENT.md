@@ -95,18 +95,35 @@ Mật khẩu chung cho tất cả tài khoản là: `Password@123`
 
 ---
 
-## 4. TRIỂN KHAI VỚI DOCKER COMPOSE VÀ MYSQL 8 (NẾU SỬ DỤNG DOCKER)
+## 4. TRIỂN KHAI VÀ GIÁM SÁT HỆ THỐNG VỚI DOCKER COMPOSE, GRAFANA & PROMETHEUS
 
-Khi triển khai trên máy chủ thật hoặc môi trường có Docker Desktop:
+Để phục vụ tốt nhất môn học **Triển khai và hệ thống phần mềm**, hệ thống đã tích hợp trọn gói cụm dịch vụ giám sát DevOps hiện đại (Prometheus & Grafana) theo kiến trúc chuẩn micro-services:
+
 ```powershell
-# Tại thư mục gốc blog-cms/
+# Khởi chạy toàn bộ hệ thống gồm MySQL, Backend, Frontend, Prometheus, Grafana:
 docker-compose up -d --build
 ```
 
-Dịch vụ sẽ tự động kích hoạt 3 container:
-1. `blog_cms_mysql` (MySQL 8.0 lắng nghe cổng 3306)
-2. `blog_cms_backend` (Node.js API lắng nghe cổng 5000)
-3. `blog_cms_frontend` (Nginx lắng nghe cổng 3000)
+Dịch vụ sẽ tự động kích hoạt 5 container:
+1. `blog_cms_mysql`: Cơ sở dữ liệu quan hệ MySQL 8.0 (Port 3306).
+2. `blog_cms_backend`: Máy chủ Node.js Express API & thu thập chỉ số Prometheus (Port 5000).
+3. `blog_cms_frontend`: Ứng dụng React Nginx (Port 3000).
+4. `blog_cms_prometheus`: Máy chủ giám sát Prometheus v2.54 thu thập metric thời gian thực từ `/api/v1/metrics` (Port 9090).
+5. `blog_cms_grafana`: Nền tảng trực quan hóa Grafana v11.2 (Port 3001) với Dashboard nạp sẵn tự động.
+
+### Thông tin truy cập hệ thống giám sát:
+- **Địa chỉ Grafana:** `http://localhost:3001`
+- **Tài khoản đăng nhập Grafana:** `admin` / Mật khẩu: `admin`
+- **Tên Dashboard nạp sẵn:** `ICTU Blog/CMS - Giám sát Hệ thống (Vũ Trọng Nghĩa - K23L)`
+- **Các chỉ số giám sát:**
+  - Tổng số requests & Tốc độ xử lý (Requests Per Second - RPS).
+  - Độ trễ phản hồi theo phân vị thứ 95 (p95 Latency).
+  - Tỉ lệ mã phản hồi HTTP 2xx, 4xx, 5xx.
+  - Mức tiêu thụ bộ nhớ RAM Heap của tiến trình Node.js (Used vs Total).
+  - % Sử dụng CPU của Backend.
+  - Top các Endpoints API có lưu lượng cao nhất.
+- **Prometheus Dashboard:** `http://localhost:9090` (Kiểm tra Target tại `/targets`).
+- **Endpoint API Metrics RAW:** `http://localhost:5000/api/v1/metrics`.
 
 ---
 

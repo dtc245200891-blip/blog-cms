@@ -13,6 +13,19 @@ describe('Integration Tests: Kiểm thử tích hợp RESTful API với Supertes
     expect(res.body.data.status).toBe('UP');
   });
 
+  it('GET /metrics - trả về dữ liệu giám sát Prometheus cho Grafana', async () => {
+    const res = await request(app).get('/metrics');
+    expect(res.status).toBe(200);
+    expect(res.text).toContain('blog_cms_');
+    expect(res.text).toContain('process_cpu_user_seconds_total');
+  });
+
+  it('GET /api/v1/metrics - trả về dữ liệu định dạng Prometheus v1', async () => {
+    const res = await request(app).get('/api/v1/metrics');
+    expect(res.status).toBe(200);
+    expect(res.text).toContain('blog_cms_http_requests_total');
+  });
+
   it('POST /api/v1/auth/login - Đăng nhập tài khoản Admin demo thành công', async () => {
     const res = await request(app)
       .post('/api/v1/auth/login')

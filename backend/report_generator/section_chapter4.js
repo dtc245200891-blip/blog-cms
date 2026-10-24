@@ -175,7 +175,6 @@ function getChapter4Children() {
       '  mysql:',
       '    image: mysql:8.0',
       '    container_name: blog_cms_mysql',
-      '    restart: always',
       '    environment:',
       '      MYSQL_ROOT_PASSWORD: rootpassword',
       '      MYSQL_DATABASE: blog_cms',
@@ -185,27 +184,49 @@ function getChapter4Children() {
       '  backend:',
       '    build: ./backend',
       '    container_name: blog_cms_backend',
-      '    restart: always',
       '    ports: ["5000:5000"]',
       '    environment:',
       '      DATABASE_URL: "mysql://root:rootpassword@mysql:3306/blog_cms"',
-      '      JWT_SECRET: "prod_super_secret_key_ictu_2026"',
       '    depends_on: [mysql]',
       '    volumes: [uploads_data:/app/uploads]',
       '',
       '  frontend:',
       '    build: ./frontend',
       '    container_name: blog_cms_frontend',
-      '    restart: always',
       '    ports: ["3000:80"]',
       '    depends_on: [backend]',
+      '',
+      '  prometheus:',
+      '    image: prom/prometheus:v2.54.1',
+      '    container_name: blog_cms_prometheus',
+      '    ports: ["9090:9090"]',
+      '    volumes: ["./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"]',
+      '    depends_on: [backend]',
+      '',
+      '  grafana:',
+      '    image: grafana/grafana:11.2.0',
+      '    container_name: blog_cms_grafana',
+      '    ports: ["3001:3000"]',
+      '    volumes:',
+      '      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro',
+      '      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards/json:ro',
+      '    depends_on: [prometheus]',
       '',
       'volumes:',
       '  mysql_data:',
       '  uploads_data:',
     ]),
 
-    h2('4.5. Thiết kế và cài đặt các giải pháp an toàn thông tin lớp sâu (Defense in Depth)'),
+    h2('4.5. Thiết kế và triển khai hệ thống giám sát hiệu năng với Prometheus và Grafana (DevOps Observability)'),
+    p(
+      'Trong môn học "Triển khai và hệ thống phần mềm", việc giám sát (Monitoring & Observability) là một cấu phần sống còn để đảm bảo hệ thống vận hành liên tục, phát hiện sớm sự cố và đánh giá năng lực chịu tải của phần mềm. Đề tài đã thiết kế và tích hợp trọn vẹn bộ đôi công cụ giám sát chuẩn công nghiệp Prometheus và Grafana:'
+    ),
+    bullet('1. Thu thập chỉ số từ Backend (Application Metrics): Backend Express tích hợp thư viện chuyên dụng prom-client để tự động ghi nhận các chỉ số tài nguyên Node.js runtime (tiêu thụ CPU, bộ nhớ Heap RAM, độ trễ Event Loop) và các chỉ số HTTP request (mã phản hồi 2xx/4xx/5xx, thời gian phản hồi theo phân vị p50, p90, p95). Mọi chỉ số được công khai tại endpoint bảo mật GET /api/v1/metrics dưới định dạng chuẩn Prometheus.'),
+    bullet('2. Máy chủ đo đạc Prometheus: Prometheus Server định kỳ kéo (pull scrape) dữ liệu từ Backend mỗi 5 giây, lưu trữ chuỗi thời gian (time-series database) và cung cấp ngôn ngữ truy vấn PromQL mạnh mẽ để tính toán tốc độ xử lý (RPS) và độ trễ trung bình.'),
+    bullet('3. Nền tảng trực quan hóa Grafana: Grafana v11.2 được cấu hình cơ chế tự động nạp (Auto-provisioning) kết nối với Prometheus tại cổng 3001 và nạp sẵn Dashboard chuyên nghiệp "ICTU Blog/CMS - Giám sát Hệ thống (Vũ Trọng Nghĩa - K23L)". Dashboard cung cấp trực quan 8 biểu đồ thời gian thực: Tổng Requests, Tốc độ RPS, Độ trễ p95 Latency, Phân bố HTTP Status, Bộ nhớ Heap RAM, % CPU và Top Endpoints lưu lượng cao.'),
+    bullet('4. Tích hợp trực tiếp vào Giao diện Quản trị CMS: Trên bảng điều khiển Admin Dashboard và thanh điều hướng Sidebar, hệ thống tích hợp sẵn thẻ trạng thái giám sát và nút truy cập trực tiếp tới Grafana để người vận hành và giảng viên có thể kiểm tra hiệu năng hệ thống ngay lập tức.'),
+
+    h2('4.6. Thiết kế và cài đặt các giải pháp an toàn thông tin lớp sâu (Defense in Depth)'),
     p(
       'Nhằm đáp ứng các tiêu chuẩn bảo mật khắt khe của ngành công nghệ thông tin, hệ thống Blog/CMS thiết kế các lớp bảo vệ đa tầng chống lại 5 lỗ hổng nghiêm trọng nhất theo bảng xếp hạng OWASP Top 10:'
     ),
@@ -216,12 +237,12 @@ function getChapter4Children() {
     bullet('5. Bảo mật phiên làm việc và chống CSRF: Token xác thực được lưu trữ trong Cookie với cờ HttpOnly (ngăn chặn JavaScript đọc token) và thuộc tính SameSite=Lax (chống tấn công giả mạo yêu cầu chéo trang).'),
     bullet('6. Nhật ký kiểm toán an toàn (Audit Logging): Mọi thao tác quản trị quan trọng (Đăng nhập, Tạo bài viết, Phê duyệt bài, Từ chối bài, Đổi quyền vai trò, Xóa bài) đều được tự động ghi nhận vào bảng audit_logs kèm địa chỉ IP, User-Agent và thời gian thực hiện.'),
 
-    h2('4.6. Danh mục 24 trang giao diện đã triển khai thực tế'),
+    h2('4.7. Danh mục các màn hình giao diện đã triển khai thực tế'),
     p(
-      'Hệ thống đã xây dựng hoàn chỉnh 24 màn hình giao diện hiện đại, thẩm mỹ cao và tương thích 100% thiết bị di động (Bảng 4.2):'
+      'Hệ thống đã xây dựng hoàn chỉnh các màn hình giao diện hiện đại, thẩm mỹ cao và tương thích 100% thiết bị di động (Bảng 4.2):'
     ),
 
-    p('Bảng 4.2: Danh mục 24 trang giao diện người dùng và quản trị đã xây dựng hoàn tất', {
+    p('Bảng 4.2: Danh mục các trang giao diện người dùng và quản trị đã xây dựng hoàn tất', {
       bold: true,
       size: 24,
       color: COLORS.NAVY_PRIMARY,
@@ -238,14 +259,14 @@ function getChapter4Children() {
         ['5', 'Thẻ từ khóa', '/tags/:slug', 'Công khai', 'Hiển thị danh sách bài viết được gắn thẻ tương ứng.'],
         ['6', 'Tìm kiếm bài viết', '/search', 'Công khai', 'Tìm kiếm bài viết theo từ khóa trong tiêu đề và nội dung.'],
         ['7', 'Trang tác giả', '/authors/:id', 'Công khai', 'Xem thông tin tiểu sử tác giả và danh sách bài viết của tác giả đó.'],
-        ['8', 'Đăng nhập', '/login', 'Công khai', 'Đăng nhập tài khoản, có sẵn nút 1-click điền tài khoản demo.'],
+        ['8', 'Đăng nhập', '/login', 'Công khai', 'Đăng nhập tài khoản an toàn với kiểm thực Zod và mật khẩu băm Bcrypt.'],
         ['9', 'Đăng ký tài khoản', '/register', 'Công khai', 'Đăng ký tài khoản độc giả mới với kiểm thực Zod.'],
         ['10', 'Quên mật khẩu', '/forgot-password', 'Công khai', 'Nhập email để nhận token khôi phục mật khẩu.'],
         ['11', 'Đặt lại mật khẩu', '/reset-password', 'Công khai', 'Nhập token và thiết lập mật khẩu mới an toàn.'],
         ['12', 'Hồ sơ cá nhân', '/profile', 'Độc giả', 'Cập nhật họ tên, tiểu sử, ảnh đại diện và đổi mật khẩu.'],
         ['13', 'Bài viết đã lưu', '/saved-posts', 'Độc giả', 'Quản lý danh sách các bài viết yêu thích (Bookmarks) cá nhân.'],
         ['14', 'Trang báo lỗi 404', '/*', 'Công khai', 'Giao diện thông báo trang không tồn tại kèm nút quay về trang chủ.'],
-        ['15', 'Bảng điều khiển số liệu', '/admin', 'Quản trị CMS', 'Dashboard thẻ thống kê số liệu và biểu đồ Recharts phân tích.'],
+        ['15', 'Bảng điều khiển số liệu', '/admin', 'Quản trị CMS', 'Dashboard thẻ thống kê số liệu và liên kết trực tiếp Grafana.'],
         ['16', 'Quản lý bài viết', '/admin/posts', 'Quản trị CMS', 'Danh sách bài viết lọc theo trạng thái (Draft, Pending, Published).'],
         ['17', 'Tạo bài viết mới', '/admin/posts/new', 'Quản trị CMS', 'Trình soạn thảo văn bản phong phú TipTap WYSIWYG hiện đại.'],
         ['18', 'Chỉnh sửa bài viết', '/admin/posts/edit/:id', 'Quản trị CMS', 'Chỉnh sửa bài viết của chính mình (chống IDOR).'],
@@ -255,6 +276,7 @@ function getChapter4Children() {
         ['22', 'Quản lý người dùng', '/admin/users', 'Quản trị CMS', 'Xem danh sách tài khoản, thay đổi vai trò RBAC, khóa/mở tài khoản.'],
         ['23', 'Thư viện hình ảnh Media', '/admin/media', 'Quản trị CMS', 'Tải ảnh lên máy chủ, xem trước ảnh, sao chép URL ảnh.'],
         ['24', 'Nhật ký an toàn (Audit)', '/admin/audit-logs', 'Quản trị CMS', 'Xem toàn bộ lịch sử thao tác nhạy cảm, IP và trình duyệt.'],
+        ['25', 'Giám sát Grafana', 'http://localhost:3001', 'Vận hành DevOps', 'Trực quan hóa chỉ số hiệu năng RPS, p95 latency, Heap RAM, CPU.'],
       ],
       { colWidths: [8, 22, 24, 18, 28] }
     )
