@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { GraduationCap, Lock, Mail, AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Lock, Mail, AlertCircle } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
   const { login } = useAuth();
@@ -40,12 +40,6 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const fillDemoAccount = (email: string) => {
-    setIdentifier(email);
-    setPassword('Password@123');
-    setError(null);
-  };
-
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
@@ -81,7 +75,7 @@ export const LoginPage: React.FC = () => {
                 type="text"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
-                placeholder="admin@ictu.edu.vn hoặc admin"
+                placeholder="Nhập email hoặc tên đăng nhập"
                 className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
                 required
               />
@@ -120,50 +114,6 @@ export const LoginPage: React.FC = () => {
             {isLoading ? 'Đang xác thực...' : 'Đăng nhập ngay'}
           </button>
         </form>
-
-        {/* Quick Demo Fill Buttons for Grading */}
-        <div className="pt-4 border-t border-slate-100">
-          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2.5 text-center">
-            Tài khoản dùng thử báo cáo (1-Click điền thông tin):
-          </p>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <button
-              type="button"
-              onClick={() => fillDemoAccount('admin@ictu.edu.vn')}
-              className="p-2 text-left rounded-lg border border-red-200 bg-red-50/50 hover:bg-red-50 text-red-800 transition"
-            >
-              <span className="font-bold block text-[11px]">1. Quản trị viên (Admin)</span>
-              <span className="text-[10px] text-slate-500">admin@ictu.edu.vn</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => fillDemoAccount('editor@ictu.edu.vn')}
-              className="p-2 text-left rounded-lg border border-purple-200 bg-purple-50/50 hover:bg-purple-50 text-purple-800 transition"
-            >
-              <span className="font-bold block text-[11px]">2. Biên tập viên (Editor)</span>
-              <span className="text-[10px] text-slate-500">editor@ictu.edu.vn</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => fillDemoAccount('author1@ictu.edu.vn')}
-              className="p-2 text-left rounded-lg border border-blue-200 bg-blue-50/50 hover:bg-blue-50 text-blue-800 transition"
-            >
-              <span className="font-bold block text-[11px]">3. Tác giả Nghĩa (Author)</span>
-              <span className="text-[10px] text-slate-500">author1@ictu.edu.vn</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => fillDemoAccount('reader1@ictu.edu.vn')}
-              className="p-2 text-left rounded-lg border border-green-200 bg-green-50/50 hover:bg-green-50 text-green-800 transition"
-            >
-              <span className="font-bold block text-[11px]">4. Độc giả Nam (Reader)</span>
-              <span className="text-[10px] text-slate-500">reader1@ictu.edu.vn</span>
-            </button>
-          </div>
-          <p className="text-[10px] text-center text-slate-600 mt-2">
-            Mật khẩu chung cho tất cả tài khoản demo: <code className="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-800">Password@123</code>
-          </p>
-        </div>
 
         {/* Footer Link */}
         <p className="text-center text-xs text-slate-600">
