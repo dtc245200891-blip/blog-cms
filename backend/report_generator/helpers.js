@@ -57,13 +57,13 @@ const headerBorders = {
 
 // Đệm lề trong ô bảng (Cell padding tối ưu để vừa vặn trang)
 const cellMargins = {
-  top: 60,
-  bottom: 60,
-  left: 100,
-  right: 100,
+  top: 50,
+  bottom: 50,
+  left: 90,
+  right: 90,
 };
 
-// Hàm tạo đoạn văn bản thông thường
+// Hàm tạo đoạn văn bản thông thường (Chuẩn 12pt Times New Roman)
 function p(text, options = {}) {
   const children = [];
   if (options.runs && Array.isArray(options.runs)) {
@@ -72,7 +72,7 @@ function p(text, options = {}) {
         new TextRun({
           text: r.text,
           font: 'Times New Roman',
-          size: r.size || options.size || 25, // 12.5pt chuẩn học thuật
+          size: r.size || options.size || 24, // 12pt chuẩn học thuật
           bold: r.bold || false,
           italics: r.italics || false,
           color: r.color || options.color || COLORS.TEXT_BODY,
@@ -84,7 +84,7 @@ function p(text, options = {}) {
       new TextRun({
         text: text,
         font: 'Times New Roman',
-        size: options.size || 25,
+        size: options.size || 24, // 12pt
         bold: options.bold || false,
         italics: options.italics || false,
         color: options.color || COLORS.TEXT_BODY,
@@ -96,8 +96,8 @@ function p(text, options = {}) {
     alignment: options.align || AlignmentType.LEFT,
     spacing: {
       before: options.before !== undefined ? options.before : 0,
-      after: options.after !== undefined ? options.after : 80, // Tối ưu 4pt spacing after
-      line: options.line || 260, // 1.1 line spacing
+      after: options.after !== undefined ? options.after : 80,
+      line: options.line || 265, // 1.1 line spacing
     },
     indent: options.indent ? { left: options.indent } : undefined,
     pageBreakBefore: options.pageBreakBefore || false,
@@ -110,13 +110,13 @@ function h1(title, options = {}) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_1,
     alignment: options.align || AlignmentType.LEFT,
-    spacing: { before: 240, after: 120 },
+    spacing: { before: 200, after: 100 },
     pageBreakBefore: options.pageBreakBefore !== undefined ? options.pageBreakBefore : true,
     children: [
       new TextRun({
         text: title,
         font: 'Times New Roman',
-        size: 30, // 15pt
+        size: 28, // 14pt
         bold: true,
         color: COLORS.NAVY_PRIMARY,
       }),
@@ -129,13 +129,13 @@ function h2(title, options = {}) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_2,
     alignment: AlignmentType.LEFT,
-    spacing: { before: 180, after: 80 },
+    spacing: { before: 150, after: 60 },
     pageBreakBefore: options.pageBreakBefore || false,
     children: [
       new TextRun({
         text: title,
         font: 'Times New Roman',
-        size: 27, // 13.5pt
+        size: 26, // 13pt
         bold: true,
         color: COLORS.NAVY_DARK,
       }),
@@ -148,12 +148,12 @@ function h3(title) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_3,
     alignment: AlignmentType.LEFT,
-    spacing: { before: 130, after: 60 },
+    spacing: { before: 110, after: 40 },
     children: [
       new TextRun({
         text: title,
         font: 'Times New Roman',
-        size: 25, // 12.5pt
+        size: 24, // 12pt
         bold: true,
         color: COLORS.SLATE_DARK,
       }),
@@ -166,12 +166,12 @@ function h4(title) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_4,
     alignment: AlignmentType.LEFT,
-    spacing: { before: 100, after: 40 },
+    spacing: { before: 80, after: 30 },
     children: [
       new TextRun({
         text: title,
         font: 'Times New Roman',
-        size: 24, // 12pt
+        size: 23, // 11.5pt
         bold: true,
         italics: true,
         color: COLORS.NAVY_DARK,
@@ -183,7 +183,7 @@ function h4(title) {
 // Danh sách dấu đầu dòng (Bullet)
 function bullet(text, options = {}) {
   const indentLevel = options.level || 1;
-  const leftIndent = indentLevel === 1 ? 480 : 960;
+  const leftIndent = indentLevel === 1 ? 400 : 800;
   const symbol = indentLevel === 1 ? '• ' : '– ';
 
   const children = [];
@@ -192,7 +192,7 @@ function bullet(text, options = {}) {
       new TextRun({
         text: symbol,
         font: 'Times New Roman',
-        size: 25,
+        size: 24,
         bold: true,
         color: COLORS.NAVY_PRIMARY,
       })
@@ -202,7 +202,7 @@ function bullet(text, options = {}) {
         new TextRun({
           text: r.text,
           font: 'Times New Roman',
-          size: r.size || 25,
+          size: r.size || 24,
           bold: r.bold || false,
           italics: r.italics || false,
           color: r.color || COLORS.TEXT_BODY,
@@ -214,14 +214,14 @@ function bullet(text, options = {}) {
       new TextRun({
         text: symbol,
         font: 'Times New Roman',
-        size: 25,
+        size: 24,
         bold: true,
         color: COLORS.NAVY_PRIMARY,
       }),
       new TextRun({
         text: text,
         font: 'Times New Roman',
-        size: 25,
+        size: 24,
         bold: options.bold || false,
         italics: options.italics || false,
         color: options.color || COLORS.TEXT_BODY,
@@ -231,8 +231,8 @@ function bullet(text, options = {}) {
 
   return new Paragraph({
     alignment: AlignmentType.LEFT,
-    spacing: { before: 20, after: 50, line: 260 },
-    indent: { left: leftIndent, hanging: 240 },
+    spacing: { before: 15, after: 40, line: 250 },
+    indent: { left: leftIndent, hanging: 200 },
     children: children,
   });
 }
@@ -254,12 +254,12 @@ function callout(title, lines, type = 'blue') {
   if (title) {
     paragraphs.push(
       new Paragraph({
-        spacing: { before: 40, after: 60 },
+        spacing: { before: 30, after: 40 },
         children: [
           new TextRun({
             text: title,
             font: 'Times New Roman',
-            size: 24, // 12pt
+            size: 23, // 11.5pt
             bold: true,
             color: borderColor,
           }),
@@ -271,12 +271,12 @@ function callout(title, lines, type = 'blue') {
   for (const line of lines) {
     paragraphs.push(
       new Paragraph({
-        spacing: { before: 20, after: 40, line: 250 },
+        spacing: { before: 15, after: 30, line: 240 },
         children: [
           new TextRun({
             text: line,
             font: 'Times New Roman',
-            size: 23, // 11.5pt
+            size: 22, // 11pt
             color: COLORS.SLATE_DARK,
           }),
         ],
@@ -296,7 +296,7 @@ function callout(title, lines, type = 'blue') {
               right: { style: BorderStyle.NONE },
               bottom: { style: BorderStyle.NONE },
             },
-            margins: { top: 80, bottom: 80, left: 150, right: 120 },
+            margins: { top: 60, bottom: 60, left: 140, right: 100 },
             shading: { type: ShadingType.CLEAR, fill: bgColor },
             children: paragraphs,
           }),
@@ -311,12 +311,12 @@ function codeBox(codeLines) {
   const paragraphs = codeLines.map(
     (line) =>
       new Paragraph({
-        spacing: { before: 10, after: 10, line: 220 },
+        spacing: { before: 8, after: 8, line: 210 },
         children: [
           new TextRun({
             text: line,
             font: 'Consolas',
-            size: 19, // 9.5pt gọn gàng
+            size: 18, // 9pt gọn gàng
             color: '0F172A',
           }),
         ],
@@ -335,7 +335,7 @@ function codeBox(codeLines) {
               right: { style: BorderStyle.SINGLE, size: 6, color: '94A3B8' },
               bottom: { style: BorderStyle.SINGLE, size: 6, color: '94A3B8' },
             },
-            margins: { top: 80, bottom: 80, left: 140, right: 140 },
+            margins: { top: 60, bottom: 60, left: 120, right: 120 },
             shading: { type: ShadingType.CLEAR, fill: 'F8FAFC' },
             children: paragraphs,
           }),
@@ -363,12 +363,12 @@ function createTable(headers, rows, options = {}) {
             children: [
               new Paragraph({
                 alignment: AlignmentType.CENTER,
-                spacing: { before: 40, after: 40 },
+                spacing: { before: 30, after: 30 },
                 children: [
                   new TextRun({
                     text: h,
                     font: 'Times New Roman',
-                    size: 22, // 11pt bold
+                    size: 21, // 10.5pt bold
                     bold: true,
                     color: options.headerLight ? COLORS.NAVY_PRIMARY : 'FFFFFF',
                   }),
@@ -405,12 +405,12 @@ function createTable(headers, rows, options = {}) {
               children: [
                 new Paragraph({
                   alignment: align,
-                  spacing: { before: 25, after: 25, line: 240 },
+                  spacing: { before: 20, after: 20, line: 230 },
                   children: [
                     new TextRun({
                       text: cellText !== undefined && cellText !== null ? String(cellText) : '',
                       font: 'Times New Roman',
-                      size: 21, // 10.5pt chuẩn bảng học thuật
+                      size: 20, // 10pt chuẩn bảng học thuật
                       color: COLORS.SLATE_DARK,
                     }),
                   ],
