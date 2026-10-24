@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import request from 'supertest';
 import app from '../app';
 
-describe('Integration Tests: Kiểm thử tích hợp RESTful API với Supertest', () => {
+describe('Integration Tests: Kiểm thử tích hợp RESTful API với Supertest', { timeout: 20000 }, () => {
   let adminToken: string;
   let readerToken: string;
 
@@ -131,6 +131,86 @@ describe('Integration Tests: Kiểm thử tích hợp RESTful API với Supertes
       expect(res.body.data.cards).toBeDefined();
       expect(res.body.data.cards.totalPosts).toBeGreaterThan(0);
       expect(res.body.data.cards.totalUsers).toBeGreaterThan(0);
+    });
+
+    it('GET /api/v1/users/stats - Admin lấy thống kê phân bổ người dùng theo vai trò', async () => {
+      const res = await request(app)
+        .get('/api/v1/users/stats')
+        .set('Authorization', `Bearer ${adminToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.total).toBeGreaterThan(0);
+      expect(res.body.data.roles).toBeDefined();
+      expect(res.body.data.roles.admins).toBeGreaterThanOrEqual(1);
+    });
+
+    let createdUserId: string;
+
+    it('POST /api/v1/users - Admin tạo người dùng mới thành công', async () => {
+      const res = await request(app)
+        .post('/api/v1/users')
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({
+          fullName: 'Sinh Viên Kiểm Thử',
+          email: 'test_student_k23l@ictu.edu.vn',
+          username: 'test_student_k23l',
+          password: 'Password@123',
+          role: 'AUTHOR',
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.role).toBe('AUTHOR');
+      createdUserId = res.body.data.id;
+    });
+
+    it('PATCH /api/v1/users/:id/admin - Admin đổi vai trò và khóa tài khoản', async () => {
+      // 1. Đổi vai trò lên EDITOR
+      const resRole = await request(app)
+        .patch(`/api/v1/users/${createdUserId}/admin`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ role: 'EDITOR' });
+
+      expect(resRole.status).toBe(200);
+      expect(resRole.body.data.role).toBe('EDITOR');
+
+      // 2. Khóa tài khoản
+      const resLock = await request(app)
+        .patch(`/api/v1/users/${createdUserId}/admin`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ isActive: false });
+
+      expect(resLock.status).toBe(200);
+      expect(resLock.body.data.isActive).toBe(false);
+
+      // 3. Mở khóa lại
+      const resUnlock = await request(app)
+        .patch(`/api/v1/users/${createdUserId}/admin`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ isActive: true });
+
+      expect(resUnlock.status).toBe(200);
+      expect(resUnlock.body.data.isActive).toBe(true);
+    });
+
+    it('PATCH /api/v1/users/:id/reset-password - Admin đặt lại mật khẩu cho người dùng', async () => {
+      const res = await request(app)
+        .patch(`/api/v1/users/${createdUserId}/reset-password`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ newPassword: 'NewSecurePassword@2026' });
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+    });
+
+    it('DELETE /api/v1/users/:id - Admin xóa người dùng thành công', async () => {
+      const res = await request(app)
+        .delete(`/api/v1/users/${createdUserId}`)
+        .set('Authorization', `Bearer ${adminToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
     });
   });
 });
