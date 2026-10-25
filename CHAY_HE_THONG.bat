@@ -44,8 +44,10 @@ timeout /t 2 /nobreak >nul
 set /a fre+=1
 netstat -aon | findstr ":5173" | findstr "LISTENING" >nul
 if errorlevel 1 (
-    if %fre% LSS 10 goto WAIT_FRONTEND
+    echo    ... dang khoi dong giao dien Vite React (lan thu %fre%) ...
+    if %fre% LSS 30 goto WAIT_FRONTEND
 )
+echo    [OK] Frontend da san sang hoat dong tren cong 5173!
 
 echo Dang mo trinh duyet...
 start http://localhost:5173
