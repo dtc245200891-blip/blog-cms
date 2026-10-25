@@ -39,34 +39,61 @@ export async function ensureDatabaseReady(): Promise<void> {
 
     if (!isMongoListening) {
       console.log('🍃 MongoDB chưa chạy trên cổng 27017. Đang tự động khởi động MongoDB NoSQL 7.0 (Replica Set rs0)...');
-      try {
-        const { MongoMemoryReplSet } = await import('mongodb-memory-server');
-        const dataDir = path.resolve(__dirname, '../../.mongo-data');
-        if (!fs.existsSync(dataDir)) {
-          fs.mkdirSync(dataDir, { recursive: true });
+      
+      const { MongoMemoryReplSet } = await import('mongodb-memory-server');
+      const dataDir = path.resolve(__dirname, '../../.mongo-data');
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
+
+      // Xóa sạch lock files cũ nếu còn sót lại do tắt tiến trình đột ngột
+      const lockFiles = ['mongod.lock', 'WiredTiger.lock'];
+      for (const file of lockFiles) {
+        const fullPath = path.join(dataDir, file);
+        if (fs.existsSync(fullPath)) {
+          try {
+            fs.unlinkSync(fullPath);
+          } catch {}
+        }
+      }
+
+      const startReplSet = async (usePersistentDir: boolean) => {
+        const instanceOpts: any = {
+          port: 27017,
+          storageEngine: 'wiredTiger',
+          launchTimeout: 60000, // 60 giây thay vì mặc định 10 giây
+        };
+
+        if (usePersistentDir) {
+          instanceOpts.dbPath = dataDir;
         }
 
-        embeddedReplSet = await MongoMemoryReplSet.create({
-          instanceOpts: [
-            {
-              port: 27017,
-              dbPath: dataDir,
-              storageEngine: 'wiredTiger',
-            },
-          ],
+        return await MongoMemoryReplSet.create({
+          instanceOpts: [instanceOpts],
           replSet: {
             name: 'rs0',
             count: 1,
           },
         });
+      };
 
+      try {
+        // 1. Thử khởi động với thư mục lưu trữ kiên cố .mongo-data
+        embeddedReplSet = await startReplSet(true);
         console.log('====================================================');
         console.log('✅ MongoDB NoSQL 7.0 (rs0) đã khởi động tự động tại 127.0.0.1:27017!');
         console.log(`📁 Thư mục lưu dữ liệu kiên cố: ${dataDir}`);
         console.log('====================================================');
       } catch (err: any) {
-        console.warn('⚠️ Không thể tự động khởi động MongoMemoryReplSet:', err.message);
-        console.log('👉 Vui lòng đảm bảo MongoDB/Docker đang hoạt động trên cổng 27017.');
+        console.warn('⚠️ Lỗi khi khởi động với dữ liệu cũ:', err.message);
+        console.log('🔄 Đang tự động kích hoạt cơ chế tự phục hồi (Self-Healing)...');
+        try {
+          embeddedReplSet = await startReplSet(false);
+          console.log('✅ MongoDB Replica Set đã tự phục hồi thành công tại 127.0.0.1:27017!');
+        } catch (fatalErr: any) {
+          console.error('❌ Không thể khởi động máy chủ MongoDB:', fatalErr.message);
+          throw new Error('Vui lòng đảm bảo không có tiến trình mongod nào bị kẹt, hoặc chạy "npm run clean:port".');
+        }
       }
     } else {
       console.log('🍃 Đã phát hiện dịch vụ MongoDB đang lắng nghe trên cổng 27017.');

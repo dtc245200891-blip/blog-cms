@@ -11,9 +11,11 @@ echo    Co so du lieu       : MongoDB 7.0 (NoSQL Replica Set)
 echo =======================================================================
 echo.
 
-echo [1/4] Kiem tra va giai phong cong 5000, 5173 (tranh xung dot)...
+echo [1/4] Kiem tra va giai phong cong 5000, 5173, 27017 (tranh xung dot)...
+taskkill /f /im mongod* >nul 2>&1
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5000" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5173" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":27017" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 
 echo [2/4] Khoi dong Backend API va May chu MongoDB 7.0...
 cd /d "%~dp0backend"

@@ -7,7 +7,7 @@ echo    DANG DUNG HE THONG BLOG/CMS (VU TRONG NGHIA - ICTU)...
 echo =======================================================================
 echo.
 echo Dang giai phong cac cong 5000 (Backend), 5173 (Frontend), 27017 (MongoDB)...
-
+taskkill /f /im mongod* >nul 2>&1
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5000" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5173" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":27017" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1

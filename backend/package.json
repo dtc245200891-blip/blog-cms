@@ -15,7 +15,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "clean:port": "powershell -Command \"$p = (Get-NetTCPConnection -LocalPort 5000 -ErrorAction SilentlyContinue).OwningProcess; if ($p) { Stop-Process -Id $p -Force; Write-Host 'Da giai phong cong 5000!' }\""
+    "clean:port": "powershell -Command \"Stop-Process -Name mongod* -Force -ErrorAction SilentlyContinue; $ports = @(5000, 27017); foreach ($p in $ports) { $conn = Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue; if ($conn) { $pids = $conn.OwningProcess | Select-Object -Unique; foreach ($id in $pids) { if ($id -gt 4) { Stop-Process -Id $id -Force } } } }; Write-Host 'Da giai phong cong 5000, 27017 va mongod!'\""
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",
