@@ -28,40 +28,6 @@
 
 \newpage
 
-# PHIẾU NHẬN XÉT VÀ ĐÁNH GIÁ ĐỒ ÁN MÔN HỌC
-### MÔN HỌC: TRIỂN KHAI VÀ HỆ THỐNG PHẦN MỀM
-
-**1. Thông tin chung:**
-- Họ và tên sinh viên: Vũ Trọng Nghĩa — Mã số sinh viên: DTC245200891
-- Lớp chuyên ngành: CNTT K23L (Khóa 23) — Khoa Công nghệ Thông tin
-- Tên đề tài: Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp
-- Giảng viên hướng dẫn: ThS. Vũ Văn Diện
-
-**2. Đánh giá chi tiết của Giảng viên hướng dẫn:**
-
-| STT | Tiêu chí đánh giá | Thang điểm | Điểm đánh giá | Nhận xét chi tiết của Giảng viên |
-|:---:|---|:---:|:---:|---|
-| 1 | Ý thức, thái độ học tập và tiến độ hoàn thành đồ án | 1.5 điểm | ....... / 1.5 | Chủ động nghiên cứu, tuân thủ đúng tiến độ đề ra. |
-| 2 | Chất lượng tài liệu thuyết minh và báo cáo kỹ thuật | 2.5 điểm | ....... / 2.5 | Bố cục khoa học, phân tích yêu cầu và thiết kế chi tiết. |
-| 3 | Chất lượng sản phẩm phần mềm, kiến trúc và mã nguồn | 3.5 điểm | ....... / 3.5 | Hệ thống hoàn chỉnh, phân quyền RBAC chặt chẽ, Docker hóa tốt. |
-| 4 | Kết quả kiểm thử tự động và năng lực bảo vệ đồ án | 2.5 điểm | ....... / 2.5 | Bộ kiểm thử tự động 100% Passed, thao tác trình diễn tự tin. |
-| **TỔNG** | **ĐIỂM TỔNG KẾT ĐỒ ÁN MÔN HỌC** | **10.0 điểm** | **....... / 10.0** | **Xếp loại: ..............................................................** |
-
-**Nhận xét chung và ý kiến kết luận của Giảng viên:**  
-........................................................................................................................................................................................................  
-........................................................................................................................................................................................................  
-........................................................................................................................................................................................................  
-
-<p align="right">
-  <i>Thái Nguyên, ngày ..... tháng ..... năm 2026</i><br/>
-  <b>GIẢNG VIÊN HƯỚNG DẪN</b><br/><br/><br/>
-  <b>ThS. Vũ Văn Diện</b>
-</p>
-
----
-
-\newpage
-
 # LỜI CẢM ƠN
 
 Lời đầu tiên, em xin gửi lời bày tỏ lòng biết ơn sâu sắc và chân thành nhất tới **Thầy giáo ThS. Vũ Văn Diện** — Giảng viên giảng dạy và hướng dẫn bộ môn **Triển khai và hệ thống phần mềm**, Trường Đại học Công nghệ Thông tin và Truyền thông – Đại học Thái Nguyên (ICTU).

@@ -1,24 +1,25 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String    @id @default(uuid())
-  email         String    @unique
-  username      String    @unique
+  id            String         @id @default(uuid()) @map("_id")
+  email         String         @unique
+  username      String         @unique
   passwordHash  String
   fullName      String
   bio           String?
   avatarUrl     String?
-  role          String    @default("READER") // ADMIN, EDITOR, AUTHOR, READER
-  isActive      Boolean   @default(true)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  role          String         @default("READER") // ADMIN, EDITOR, AUTHOR, READER
+  isActive      Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 
   posts         Post[]
   comments      Comment[]
@@ -31,7 +32,7 @@ model User {
 }
 
 model Category {
-  id          String     @id @default(uuid())
+  id          String     @id @default(uuid()) @map("_id")
   name        String
   slug        String     @unique
   description String?
@@ -39,7 +40,7 @@ model Category {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   children    Category[] @relation("CategoryHierarchy")
   posts       Post[]
 
@@ -47,7 +48,7 @@ model Category {
 }
 
 model Tag {
-  id        String    @id @default(uuid())
+  id        String    @id @default(uuid()) @map("_id")
   name      String
   slug      String    @unique
   createdAt DateTime  @default(now())
@@ -59,7 +60,7 @@ model Tag {
 }
 
 model Post {
-  id              String      @id @default(uuid())
+  id              String      @id @default(uuid()) @map("_id")
   title           String
   slug            String      @unique
   excerpt         String?
@@ -81,7 +82,7 @@ model Post {
   author          User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   categoryId      String?
-  category        Category?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  category        Category?   @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   postTags        PostTag[]
   comments        Comment[]
@@ -92,38 +93,39 @@ model Post {
 }
 
 model PostTag {
-  postId    String
-  tagId     String
+  id     String @id @default(uuid()) @map("_id")
+  postId String
+  tagId  String
 
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
-  @@id([postId, tagId])
+  @@unique([postId, tagId])
   @@map("post_tags")
 }
 
 model Comment {
-  id          String    @id @default(uuid())
-  content     String
-  status      String    @default("APPROVED") // PENDING, APPROVED, REJECTED, SPAM
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String    @id @default(uuid()) @map("_id")
+  content   String
+  status    String    @default("APPROVED") // PENDING, APPROVED, REJECTED, SPAM
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
-  postId      String
-  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  authorId    String
-  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
-  parentId    String?
-  parent      Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
-  replies     Comment[] @relation("CommentReplies")
+  parentId  String?
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Comment[] @relation("CommentReplies")
 
   @@map("comments")
 }
 
 model Bookmark {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id")
   createdAt DateTime @default(now())
 
   userId    String
@@ -137,7 +139,7 @@ model Bookmark {
 }
 
 model Media {
-  id           String   @id @default(uuid())
+  id           String   @id @default(uuid()) @map("_id")
   filename     String
   originalName String
   mimeType     String
@@ -152,7 +154,7 @@ model Media {
 }
 
 model Notification {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id")
   title     String
   message   String
   type      String   @default("INFO") // INFO, SUCCESS, WARNING, DANGER
@@ -167,7 +169,7 @@ model Notification {
 }
 
 model Setting {
-  id          String   @id @default(uuid())
+  id          String   @id @default(uuid()) @map("_id")
   key         String   @unique
   value       String
   description String?
@@ -177,7 +179,7 @@ model Setting {
 }
 
 model AuditLog {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id")
   action    String
   entity    String
   entityId  String?
@@ -187,24 +189,24 @@ model AuditLog {
   createdAt DateTime @default(now())
 
   userId    String?
-  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("audit_logs")
 }
 
 model PasswordResetToken {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid()) @map("_id")
   email     String
-  token     String   @unique
+  token     String    @unique
   expiresAt DateTime
   usedAt    DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
   @@map("password_reset_tokens")
 }
 
 model PostView {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id")
   ipHash    String?
   createdAt DateTime @default(now())
 

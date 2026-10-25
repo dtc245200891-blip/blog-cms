@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const JSZip = require('jszip');
 const {
   Document,
   Packer,
@@ -12,6 +13,45 @@ const {
   PageNumber,
   COLORS,
 } = require('./helpers');
+
+// Hàm xử lý sâu tệp OpenXML để triệt tiêu vĩnh viễn mọi dấu gạch đỏ chính tả trong Microsoft Word
+async function disableAllSpellingUnderlines(buffer) {
+  const zip = await JSZip.loadAsync(buffer);
+
+  // 1. Cấu hình word/settings.xml: Bật cờ ẩn lỗi chính tả và ngữ pháp
+  const settingsFile = zip.file('word/settings.xml');
+  if (settingsFile) {
+    let settings = await settingsFile.async('string');
+    if (!settings.includes('hideSpellingErrors')) {
+      settings = settings.replace(
+        '</w:settings>',
+        '<w:hideSpellingErrors/><w:hideGrammaticalErrors/><w:proofState w:spelling="clean" w:grammar="clean"/></w:settings>'
+      );
+      zip.file('word/settings.xml', settings);
+    }
+  }
+
+  // 2. Cấu hình word/styles.xml: Thiết lập noProof mặc định cho toàn bộ tài liệu
+  const stylesFile = zip.file('word/styles.xml');
+  if (stylesFile) {
+    let styles = await stylesFile.async('string');
+    if (styles.includes('<w:rPrDefault/>')) {
+      styles = styles.replace(
+        '<w:rPrDefault/>',
+        '<w:rPrDefault><w:rPr><w:noProof/><w:lang w:val="vi-VN"/></w:rPr></w:rPrDefault>'
+      );
+      zip.file('word/styles.xml', styles);
+    } else if (styles.includes('<w:rPrDefault><w:rPr>')) {
+      styles = styles.replace(
+        '<w:rPrDefault><w:rPr>',
+        '<w:rPrDefault><w:rPr><w:noProof/><w:lang w:val="vi-VN"/>'
+      );
+      zip.file('word/styles.xml', styles);
+    }
+  }
+
+  return await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
+}
 
 const { getFrontMatterChildren } = require('./section_front_matter');
 const { getChapter1Children } = require('./section_chapter1');
@@ -341,12 +381,25 @@ async function buildExpandedReport() {
 
   // Đóng gói tệp docx
   console.log('📦 [4/5] Đang đóng gói tệp DOCX (Packer)...');
-  const buffer = await Packer.toBuffer(doc);
+  const rawBuffer = await Packer.toBuffer(doc);
+
+  console.log('🛡️ Đang áp dụng cơ chế triệt tiêu toàn bộ dấu gạch đỏ chính tả (noProof & hideSpellingErrors)...');
+  const buffer = await disableAllSpellingUnderlines(rawBuffer);
 
   // Xuất file ra thư mục dự án
   const outputPath = path.resolve(__dirname, '..', '..', 'BAO_CAO_DO_AN_ICTU_VU_TRONG_NGHIA.docx');
-  fs.writeFileSync(outputPath, buffer);
-  console.log(`✅ [5/5] ĐÃ TẠO THÀNH CÔNG TỆP BÁO CÁO MỞ RỘNG TẠI:\n   👉 ${outputPath} (${(buffer.length / 1024).toFixed(1)} KB)`);
+  try {
+    fs.writeFileSync(outputPath, buffer);
+    console.log(`✅ [5/5] ĐÃ TẠO THÀNH CÔNG TỆP BÁO CÁO MỞ RỘNG TẠI:\n   👉 ${outputPath} (${(buffer.length / 1024).toFixed(1)} KB)`);
+  } catch (err) {
+    if (err.code === 'EBUSY') {
+      const altPath = path.resolve(__dirname, '..', '..', 'BAO_CAO_DO_AN_ICTU_VU_TRONG_NGHIA_MONGODB.docx');
+      fs.writeFileSync(altPath, buffer);
+      console.log(`⚠️ Tệp gốc đang được mở trong Microsoft Word. Đã lưu bản báo cáo mới nhất tại:\n   👉 ${altPath} (${(buffer.length / 1024).toFixed(1)} KB)`);
+    } else {
+      throw err;
+    }
+  }
 
   // Đồng thời sao chép đè vào tệp người dùng tải lên nếu tồn tại
   const uploadedDir = 'C:\\Users\\vtn08\\.gemini\\antigravity\\brain\\1f09fdd2-1fb2-4540-a5ee-14a46683e9b7\\.user_uploaded';

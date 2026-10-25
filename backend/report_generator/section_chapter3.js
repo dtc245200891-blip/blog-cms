@@ -21,7 +21,7 @@ function getChapter3Children() {
   // CHƯƠNG 3
   // ==========================================
   elements.push(
-    h1('CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU QUAN HỆ', { pageBreakBefore: true }),
+    h1('CHƯƠNG 3: THIẾT KẾ KIẾN TRÚC PHẦN MỀM VÀ CƠ SỞ DỮ LIỆU NOSQL MONGODB', { pageBreakBefore: true }),
 
     h2('3.1. Thiết kế kiến trúc tổng thể phần mềm (Three-Tier Architecture)'),
     h3('3.1.1. Mô hình kiến trúc phân tầng 3 lớp (Three-Tier Architecture)'),
@@ -30,17 +30,17 @@ function getChapter3Children() {
     ),
     bullet('1. Tầng Trình diễn (Presentation Layer - Frontend): Xây dựng trên nền tảng React 18 SPA. Chịu trách nhiệm tương tác đồ họa với người dùng, kết xuất dữ liệu HTML/CSS, quản lý trạng thái điều hướng bằng React Router v6, quản lý bộ nhớ đệm truy vấn qua TanStack Query v5, và kích hoạt các yêu cầu HTTP bất đồng bộ thông qua thư viện Axios tới máy chủ API.'),
     bullet('2. Tầng Ứng dụng & Dịch vụ (Application / Service Layer - Backend): Máy chủ Express.js viết bằng TypeScript. Đóng vai trò là cổng API Gateway tiếp nhận các yêu cầu HTTP từ máy khách, xử lý các tác vụ an ninh thông qua chuỗi Middleware (Helmet, CORS, Rate Limit, Auth, RBAC), chuyển tiếp dữ liệu vào tầng Điều khiển (Controllers) và Tầng Dịch vụ (Services) để thực thi trọn vẹn logic nghiệp vụ.'),
-    bullet('3. Tầng Lưu trữ & Truy cập Dữ liệu (Persistence Layer - Database): Sử dụng hệ quản trị CSDL quan hệ MySQL 8.0 (kết hợp Prisma ORM Client). Đảm bảo lưu trữ dữ liệu an toàn, thực thi các truy vấn quan hệ phức tạp, quản lý giao dịch nguyên tử (ACID Transactions) và ánh xạ đối tượng quan hệ an toàn kiểu tĩnh tuyệt đối.'),
+    bullet('3. Tầng Lưu trữ & Truy cập Dữ liệu (Persistence Layer - Database): Sử dụng hệ quản trị CSDL NoSQL MongoDB 7.0 (kết hợp Prisma ORM MongoDB Connector). Đảm bảo lưu trữ dữ liệu dạng JSON/BSON Document linh hoạt, tối ưu hóa tốc độ truy xuất, hỗ trợ cơ chế Replica Set phân tán và đảm bảo an toàn giao dịch đa tài liệu (Multi-Document ACID Transactions).'),
 
     h3('3.1.2. Thiết kế tổ chức module mã nguồn Backend (Controller-Service-Repository)'),
     p(
       'Nhằm đảm bảo tính mở rộng cao và dễ bảo trì, mã nguồn Backend được cấu trúc theo mô hình module hóa tính năng (Feature-based Modular Architecture). Mỗi thực thể chức năng (auth, posts, categories, comments, media, dashboard, users, audit, settings) đều tạo thành một module độc lập chứa 3 tệp tin chuyên biệt: Routes (*.routes.ts) khai báo các điểm cuối URL; Controllers (*.controller.ts) tiếp nhận và kiểm thực yêu cầu HTTP; và Services (*.service.ts) thực thi logic nghiệp vụ và tương tác với CSDL qua Prisma.'
     ),
 
-    h2('3.2. Thiết kế Cơ sở dữ liệu quan hệ (Relational Database Design)'),
-    h3('3.2.1. Phân tích thực thể và chuẩn hóa CSDL mức 3NF'),
+    h2('3.2. Thiết kế Cơ sở dữ liệu NoSQL MongoDB và lược đồ Collections'),
+    h3('3.2.1. Phân tích thực thể và mô hình hóa dữ liệu Document MongoDB'),
     p(
-      'Cơ sở dữ liệu của hệ thống được chuẩn hóa triệt để đạt mức Dạng chuẩn 3 (3rd Normal Form - 3NF): mọi thuộc tính không khóa đều phụ thuộc hoàn toàn vào khóa chính, không tồn tại phụ thuộc bắc cầu, loại bỏ hoàn toàn hiện tượng dư thừa dữ liệu (Data Redundancy) và dị thường trong các thao tác thêm, sửa, xóa. Hệ thống bao gồm 13 bảng dữ liệu quan hệ:'
+      'Cơ sở dữ liệu của hệ thống được tổ chức thành 13 Collections linh hoạt trong MongoDB. Mọi Document đều được ánh xạ trường khóa chính _id dưới dạng chuỗi UUID duy nhất, thiết lập các chỉ mục (Indexes) tốc độ cao và ràng buộc tính toàn vẹn thông qua Prisma Schema:'
     ),
 
     // Bảng 3.1: posts

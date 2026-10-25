@@ -20,123 +20,10 @@ function getFrontMatterChildren(logoData) {
   const elements = [];
 
   // ==========================================
-  // PHẦN 1: PHIẾU ĐÁNH GIÁ CỦA GIẢNG VIÊN HƯỚNG DẪN
+  // PHẦN 1: LỜI CẢM ƠN (BẮT ĐẦU NGAY SAU TRANG BÌA - TRANG 2)
   // ==========================================
   elements.push(
-    p('BỘ GIÁO DỤC VÀ ĐÀO TẠO — ĐẠI HỌC THÁI NGUYÊN', {
-      align: AlignmentType.CENTER,
-      bold: true,
-      size: 25,
-      after: 30,
-    }),
-    p('TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG (ICTU)', {
-      align: AlignmentType.CENTER,
-      bold: true,
-      color: COLORS.NAVY_PRIMARY,
-      size: 25,
-      after: 40,
-    }),
-    p('KHOA CÔNG NGHỆ THÔNG TIN', {
-      align: AlignmentType.CENTER,
-      bold: true,
-      size: 23,
-      color: '475569',
-      after: 160,
-    }),
-    p('PHIẾU NHẬN XÉT VÀ ĐÁNH GIÁ ĐỒ ÁN MÔN HỌC', {
-      align: AlignmentType.CENTER,
-      bold: true,
-      size: 28,
-      color: COLORS.NAVY_PRIMARY,
-      after: 140,
-    }),
-    p('MÔN HỌC: TRIỂN KHAI VÀ HỆ THỐNG PHẦN MỀM', {
-      align: AlignmentType.CENTER,
-      bold: true,
-      size: 25,
-      color: '0284C7',
-      after: 180,
-    }),
-
-    p('1. Thông tin chung:', { bold: true, size: 25, after: 60 }),
-    bullet('Họ và tên sinh viên: Vũ Trọng Nghĩa — Mã số sinh viên: DTC245200891'),
-    bullet('Lớp chuyên ngành: CNTT K23L (Khóa 23) — Khoa Công nghệ Thông tin'),
-    bullet('Tên đề tài: Xây dựng và triển khai Hệ thống Blog / Content Management System (CMS) chuyên nghiệp'),
-    bullet('Giảng viên hướng dẫn: ThS. Vũ Văn Diện'),
-
-    p('2. Đánh giá chi tiết của Giảng viên hướng dẫn:', { bold: true, size: 25, before: 100, after: 60 }),
-    createTable(
-      ['STT', 'Tiêu chí đánh giá', 'Thang điểm', 'Điểm đánh giá', 'Nhận xét chi tiết của Giảng viên'],
-      [
-        [
-          '1',
-          'Ý thức, thái độ học tập và tiến độ hoàn thành đồ án',
-          '1.5 điểm',
-          '       / 1.5',
-          'Chủ động nghiên cứu, tuân thủ đúng tiến độ đề ra.',
-        ],
-        [
-          '2',
-          'Chất lượng tài liệu thuyết minh và báo cáo kỹ thuật',
-          '2.5 điểm',
-          '       / 2.5',
-          'Bố cục khoa học, phân tích yêu cầu và thiết kế chi tiết.',
-        ],
-        [
-          '3',
-          'Chất lượng sản phẩm phần mềm, kiến trúc và mã nguồn',
-          '3.5 điểm',
-          '       / 3.5',
-          'Hệ thống hoàn chỉnh, phân quyền RBAC chặt chẽ, Docker hóa tốt.',
-        ],
-        [
-          '4',
-          'Kết quả kiểm thử tự động và năng lực bảo vệ đồ án',
-          '2.5 điểm',
-          '       / 2.5',
-          'Bộ kiểm thử tự động 100% Passed, thao tác trình diễn tự tin.',
-        ],
-        [
-          'TỔNG',
-          'ĐIỂM TỔNG KẾT ĐỒ ÁN MÔN HỌC',
-          '10.0 điểm',
-          '       / 10.0',
-          'Xếp loại: ..............................................................',
-        ],
-      ],
-      { colWidths: [8, 38, 14, 14, 26] }
-    ),
-
-    p('Nhận xét chung và ý kiến kết luận của Giảng viên:', { bold: true, size: 25, before: 120, after: 60 }),
-    p(
-      '........................................................................................................................................................................................................'
-    ),
-    p(
-      '........................................................................................................................................................................................................'
-    ),
-
-    p('Thái Nguyên, ngày ..... tháng ..... năm 2026', {
-      align: AlignmentType.RIGHT,
-      italics: true,
-      before: 120,
-      after: 40,
-    }),
-    p('GIẢNG VIÊN HƯỚNG DẪN', {
-      align: AlignmentType.RIGHT,
-      bold: true,
-      after: 320,
-    }),
-    p('ThS. Vũ Văn Diện', {
-      align: AlignmentType.RIGHT,
-      bold: true,
-      color: COLORS.NAVY_PRIMARY,
-      after: 160,
-    }),
-
-    // ==========================================
-    // PHẦN 2: LỜI CẢM ƠN
-    // ==========================================
-    h1('LỜI CẢM ƠN', { pageBreakBefore: true }),
+    h1('LỜI CẢM ƠN', { pageBreakBefore: false }),
     p(
       'Lời đầu tiên, em xin gửi lời bày tỏ lòng biết ơn sâu sắc và chân thành nhất tới Thầy giáo ThS. Vũ Văn Diện — Giảng viên giảng dạy và hướng dẫn bộ môn Triển khai và hệ thống phần mềm, Trường Đại học Công nghệ Thông tin và Truyền thông – Đại học Thái Nguyên (ICTU).'
     ),
@@ -163,15 +50,15 @@ function getFrontMatterChildren(logoData) {
     }),
 
     // ==========================================
-    // PHẦN 3: MỤC LỤC TỔNG QUAN VÀ CHI TIẾT
+    // PHẦN 2: MỤC LỤC TỔNG QUAN VÀ CHI TIẾT
     // ==========================================
     h1('MỤC LỤC BÁO CÁO ĐỒ ÁN', { pageBreakBefore: true }),
     createTable(
       ['Nội dung các phần và chương mục', 'Trang'],
       [
-        ['LỜI CẢM ƠN', 'iii'],
-        ['DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT', 'v'],
-        ['DANH MỤC CÁC BẢNG BIỂU VÀ HÌNH VẼ', 'vi'],
+        ['LỜI CẢM ƠN', 'ii'],
+        ['DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT', 'iv'],
+        ['DANH MỤC CÁC BẢNG BIỂU VÀ HÌNH VẼ', 'v'],
         ['LỜI MỞ ĐẦU', '1'],
         ['   1. Tính cấp thiết của đề tài', '1'],
         ['   2. Mục tiêu và nhiệm vụ nghiên cứu', '2'],
@@ -221,7 +108,7 @@ function getFrontMatterChildren(logoData) {
     ),
 
     // ==========================================
-    // PHẦN 4: DANH MỤC TỪ VIẾT TẮT
+    // PHẦN 3: DANH MỤC TỪ VIẾT TẮT
     // ==========================================
     h1('DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT', { pageBreakBefore: true }),
     createTable(
@@ -255,7 +142,7 @@ function getFrontMatterChildren(logoData) {
     ),
 
     // ==========================================
-    // PHẦN 5: DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ (KẾT HỢP GỌN GÀNG)
+    // PHẦN 4: DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ
     // ==========================================
     h1('DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ', { pageBreakBefore: true }),
     h2('1. Danh mục các bảng biểu trong đồ án'),
@@ -297,7 +184,7 @@ function getFrontMatterChildren(logoData) {
     ),
 
     // ==========================================
-    // PHẦN 6: LỜI MỞ ĐẦU
+    // PHẦN 5: LỜI MỞ ĐẦU
     // ==========================================
     h1('LỜI MỞ ĐẦU', { pageBreakBefore: true }),
     h2('1. Tính cấp thiết của đề tài'),

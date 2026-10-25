@@ -11,7 +11,7 @@ RUN npm install
 
 COPY . .
 
-RUN npx prisma generate --schema=prisma/schema.mysql.prisma
+RUN npx prisma generate --schema=prisma/schema.prisma
 RUN npm run build
 RUN npm prune --production
 

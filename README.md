@@ -16,15 +16,15 @@
 ## 1. GIỚI THIỆU VÀ ĐẶC ĐIỂM NỔI BẬT
 
 Hệ thống Blog/CMS được phát triển như một nền tảng xuất bản nội dung số hoàn chỉnh theo tiêu chuẩn doanh nghiệp, bao gồm:
-1. **Cơ sở dữ liệu quan hệ thật 100%:** Quản lý bằng Prisma ORM, hỗ trợ song song SQLite (chạy cục bộ tức thì) và MySQL 8.0 (triển khai sản xuất & Docker). Có kịch bản nạp dữ liệu mẫu (Seed script) đầy đủ người dùng, bài viết, danh mục, thẻ, bình luận và nhật ký hoạt động.
+1. **Cơ sở dữ liệu NoSQL MongoDB thật 100%:** Quản lý và trừu tượng hóa bằng Prisma ORM (MongoDB Connector). Hệ thống hỗ trợ khởi động trực tiếp MongoDB 7.0 Replica Set cục bộ (`npm run db:mongo`) và triển khai Docker container (`blog_cms_mongodb`). Có kịch bản nạp dữ liệu mẫu (Seed script) đầy đủ người dùng, bài viết, danh mục, thẻ, bình luận và nhật ký hoạt động vào các Collections MongoDB.
 2. **Phân quyền người dùng RBAC 4 cấp độ:** Kiểm soát nghiêm ngặt tại Backend:
    - **Khách (Guest):** Đọc bài viết công khai, tìm kiếm.
    - **Độc giả (Reader):** Bình luận, trả lời bình luận, lưu bài viết (Bookmark), quản lý hồ sơ cá nhân.
    - **Tác giả (Author):** Soạn thảo bài viết Rich Text (TipTap), lưu bản nháp, gửi bài để kiểm duyệt, quản lý bài viết của mình (chống IDOR).
    - **Biên tập viên (Editor):** Thẩm định và duyệt bài viết (`PENDING` $\rightarrow$ `PUBLISHED`), từ chối bài viết kèm lý do cụ thể, kiểm duyệt bình luận.
-   - **Quản trị viên (Admin):** Toàn quyền quản trị hệ thống, phân quyền người dùng, khóa/mở khóa tài khoản, xem bảng điều khiển và nhật ký hoạt động (Audit logs).
+   - **Quản trị viên (Admin):** Toàn quyền quản trị hệ thống, cấp quyền vai trò RBAC, khóa/mở khóa tài khoản, tạo người dùng, đặt lại mật khẩu, xóa tài khoản, xem bảng điều khiển và nhật ký hoạt động (Audit logs).
 3. **Bảo mật chuyên sâu:** Băm mật khẩu với Bcrypt 10 rounds, phiên làm việc qua Cookie HttpOnly và Token JWT, chống brute-force bằng Rate Limiter, khử mã độc XSS bằng Sanitize-HTML, bảo vệ tiêu đề với Helmet.
-4. **Kiểm thử tự động:** Tích hợp bộ kiểm thử tự động với Vitest và Supertest, đạt tỉ lệ **17/17 bài kiểm thử thành công (100%)**.
+4. **Kiểm thử tự động:** Tích hợp bộ kiểm thử tự động với Vitest và Supertest chạy trực tiếp trên MongoDB Replica Set, đạt tỉ lệ **24/24 bài kiểm thử thành công (100%)**.
 
 ---
 
@@ -47,17 +47,20 @@ Hệ thống Blog/CMS được phát triển như một nền tảng xuất bả
   - Express-Rate-Limit (Chống brute-force)
   - Helmet & CORS (Bảo mật HTTP)
   - Multer (Quản lý tải tệp ảnh an toàn)
+- **Cơ sở dữ liệu:**
+  - **MongoDB 7.0 (NoSQL Database)**
+  - Prisma ORM (MongoDB Connector với đầy đủ Collections & Quan hệ)
 - **Kiểm thử, Giám sát & Triển khai:**
-  - Vitest, Supertest (100% kiểm thử tự động)
+  - Vitest, Supertest (24/24 bài kiểm thử tự động đạt 100%)
   - **Prometheus v2.54** (Thu thập chỉ số thời gian thực từ Backend `/api/v1/metrics`)
   - **Grafana v11.2** (Trực quan hóa Dashboard hiệu năng hệ thống tại cổng `3001`)
-  - Docker & Docker Compose (MySQL 8, Backend, Frontend, Prometheus, Grafana)
+  - Docker & Docker Compose (MongoDB 7.0 Replica Set, Backend, Frontend, Prometheus, Grafana)
 
 ---
 
 ## 3. HƯỚNG DẪN CÀI ĐẶT VÀ KHỞI CHẠY TRÊN WINDOWS
 
-Hệ thống được cấu hình để sinh viên và giảng viên có thể khởi chạy và chấm điểm trực tiếp trên máy tính mà không cần cài đặt thêm phần mềm phức tạp.
+Hệ thống được cấu hình để sinh viên và giảng viên có thể khởi chạy và chấm điểm trực tiếp trên máy tính.
 
 ### Bước 1: Mở Terminal tại thư mục dự án
 ```powershell
@@ -66,24 +69,38 @@ cd C:\Users\vtn08\.gemini\antigravity\scratch\blog-cms
 
 ---
 
-### Bước 2: Khởi tạo và chạy Backend
-Mở một cửa sổ PowerShell thứ nhất:
+### Bước 2: Khởi động Cơ sở dữ liệu MongoDB
+Bạn có thể chọn 1 trong 2 cách cực kỳ tiện lợi:
+- **Cách A (Không cần Docker):** Chạy lệnh sau để khởi động MongoDB 7.0 Replica Set cục bộ:
+  ```powershell
+  cd backend
+  npm run db:mongo
+  ```
+- **Cách B (Dùng Docker Desktop):**
+  ```powershell
+  docker-compose up -d mongodb
+  ```
+
+---
+
+### Bước 3: Khởi tạo và chạy Backend
+Mở một cửa sổ PowerShell mới:
 ```powershell
-cd backend
+cd C:\Users\vtn08\.gemini\antigravity\scratch\blog-cms\backend
 
 # 1. Cài đặt các gói phụ thuộc
 npm install
 
-# 2. Tạo file cấu hình môi trường từ mẫu
+# 2. Tạo file cấu hình môi trường từ mẫu (nếu chưa có)
 Copy-Item .env.example .env
 
-# 3. Sinh mã nguồn Prisma Client
+# 3. Sinh mã nguồn Prisma Client cho MongoDB
 npm run db:generate
 
-# 4. Đồng bộ cấu trúc cơ sở dữ liệu (tự động tạo database)
+# 4. Đồng bộ Collections và Indexes vào MongoDB
 npm run db:push
 
-# 5. Nạp dữ liệu mẫu hoàn chỉnh
+# 5. Nạp dữ liệu mẫu hoàn chỉnh vào MongoDB
 npm run db:seed
 ```
 
@@ -91,7 +108,7 @@ npm run db:seed
 ```powershell
 npm run test
 ```
-*Tất cả 17 bài test Unit & Integration sẽ vượt qua 100%.*
+*Tất cả **24/24 bài test** Unit & Integration chạy trên MongoDB Replica Set vượt qua 100%.*
 
 #### Khởi động Backend API:
 ```powershell
@@ -99,10 +116,11 @@ npm run dev
 ```
 - Máy chủ API chạy tại: **`http://localhost:5000`**
 - Kiểm tra sức khỏe: **`http://localhost:5000/api/health`**
+- API Metrics Prometheus: **`http://localhost:5000/api/v1/metrics`**
 
 ---
 
-### Bước 3: Khởi động Frontend
+### Bước 4: Khởi động Frontend
 Mở một cửa sổ PowerShell thứ hai:
 ```powershell
 cd C:\Users\vtn08\.gemini\antigravity\scratch\blog-cms\frontend

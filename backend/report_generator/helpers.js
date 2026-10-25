@@ -1,10 +1,11 @@
 const path = require('path');
 const fs = require('fs');
+const docx = require('docx');
 const {
   Document,
   Packer,
   Paragraph,
-  TextRun,
+  TextRun: DocxTextRun,
   Table,
   TableRow,
   TableCell,
@@ -18,7 +19,20 @@ const {
   PageNumber,
   ShadingType,
   PageBreak,
-} = require('docx');
+} = docx;
+
+// Tự động kích hoạt noProof: true trên 100% TextRun để xóa sạch dấu gạch đỏ kiểm tra chính tả của Word
+class TextRun extends DocxTextRun {
+  constructor(options) {
+    if (typeof options === 'string') {
+      super({ text: options, noProof: true });
+    } else if (options && typeof options === 'object') {
+      super({ noProof: true, ...options });
+    } else {
+      super(options);
+    }
+  }
+}
 
 // Màu sắc chủ đạo (ICTU Academic Navy & Slate)
 const COLORS = {

@@ -1,20 +1,18 @@
 version: '3.8'
 
 services:
-  # 1. Cơ sở dữ liệu MySQL 8 chính thức
-  mysql:
-    image: mysql:8.0
-    container_name: blog_cms_mysql
+  # 1. Cơ sở dữ liệu NoSQL MongoDB chính thức (Hệ thống Blog/CMS)
+  mongodb:
+    image: mongo:7.0
+    container_name: blog_cms_mongodb
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: blog_cms
+    command: ["--replSet", "rs0", "--bind_ip_all"]
     ports:
-      - "3306:3306"
+      - "27017:27017"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mongodb_data:/data/db
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      test: ["CMD", "mongosh", "--eval", "try { rs.status().ok } catch(e) { rs.initiate(); }"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -31,7 +29,7 @@ services:
     environment:
       PORT: 5000
       NODE_ENV: production
-      DATABASE_URL: "mysql://root:rootpassword@mysql:3306/blog_cms"
+      DATABASE_URL: "mongodb://mongodb:27017/blog_cms?replicaSet=rs0"
       JWT_SECRET: "ictu_blog_cms_super_secret_jwt_key_2026_vu_trong_nghia"
       JWT_EXPIRES_IN: "7d"
       COOKIE_SECRET: "ictu_cookie_secret_key_k23l"
@@ -40,7 +38,7 @@ services:
     volumes:
       - uploads_data:/app/uploads
     depends_on:
-      mysql:
+      mongodb:
         condition: service_healthy
 
   # 3. Máy chủ giao diện Frontend (React + Vite + Tailwind CSS)
@@ -94,7 +92,7 @@ services:
       - prometheus
 
 volumes:
-  mysql_data:
+  mongodb_data:
   uploads_data:
   prometheus_data:
   grafana_data:

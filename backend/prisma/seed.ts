@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient();
+const defaultPrisma = new PrismaClient();
 
-async function main() {
+export async function seedDatabase(customPrisma?: PrismaClient) {
+  const prisma = customPrisma || defaultPrisma;
   console.log('🌱 Bắt đầu tạo dữ liệu mẫu (Seeding database)...');
 
   // Xóa sạch dữ liệu cũ
@@ -488,11 +489,13 @@ async function main() {
   console.log('----------------------------------------------------');
 }
 
-main()
-  .catch((e) => {
-    console.error('❌ Lỗi khi chạy seed:', e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+if (require.main === module || (process.argv[1] && process.argv[1].includes('seed'))) {
+  seedDatabase()
+    .catch((e) => {
+      console.error('❌ Lỗi khi chạy seed:', e);
+      process.exit(1);
+    })
+    .finally(async () => {
+      await defaultPrisma.$disconnect();
+    });
+}

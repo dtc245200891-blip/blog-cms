@@ -13,9 +13,9 @@
 
 1. **Node.js:** Phiên bản LTS khuyến nghị từ `v20.x` hoặc `v22.x` / `v24.x` (Đã xác minh hoạt động tốt trên Node `v24.19.0`).
 2. **Trình quản lý gói:** `npm` phiên bản 10 trở lên.
-3. **Cơ sở dữ liệu:**
-   - **Tùy chọn A (Nhanh nhất, chạy ngay không cần cài đặt CSDL rời):** Sử dụng SQLite tích hợp sẵn trong Prisma (`DATABASE_URL="file:./dev.db"`). Khởi động ngay tức thì, đầy đủ toàn vẹn dữ liệu quan hệ và phục vụ bảo vệ đồ án trực tiếp trước Hội đồng chấm điểm.
-   - **Tùy chọn B (Sản xuất / Docker):** Cài đặt MySQL 8.0 hoặc Docker Desktop.
+3. **Cơ sở dữ liệu NoSQL:**
+   - **Tùy chọn A (Cục bộ độc lập không cần Docker):** Khởi chạy MongoDB 7.0 Replica Set ngay bằng lệnh `npm run db:mongo` trong thư mục `backend`.
+   - **Tùy chọn B (Docker Compose):** Khởi chạy container `mongo:7.0` bằng lệnh `docker-compose up -d mongodb`.
 
 ---
 
@@ -105,7 +105,7 @@ docker-compose up -d --build
 ```
 
 Dịch vụ sẽ tự động kích hoạt 5 container:
-1. `blog_cms_mysql`: Cơ sở dữ liệu quan hệ MySQL 8.0 (Port 3306).
+1. `blog_cms_mongodb`: Cơ sở dữ liệu NoSQL MongoDB 7.0 Replica Set (Port 27017).
 2. `blog_cms_backend`: Máy chủ Node.js Express API & thu thập chỉ số Prometheus (Port 5000).
 3. `blog_cms_frontend`: Ứng dụng React Nginx (Port 3000).
 4. `blog_cms_prometheus`: Máy chủ giám sát Prometheus v2.54 thu thập metric thời gian thực từ `/api/v1/metrics` (Port 9090).
