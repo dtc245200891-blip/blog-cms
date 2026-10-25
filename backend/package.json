@@ -14,7 +14,8 @@
     "db:mongo": "tsx scripts/run-mongodb.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean:port": "powershell -Command \"$p = (Get-NetTCPConnection -LocalPort 5000 -ErrorAction SilentlyContinue).OwningProcess; if ($p) { Stop-Process -Id $p -Force; Write-Host 'Da giai phong cong 5000!' }\""
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",

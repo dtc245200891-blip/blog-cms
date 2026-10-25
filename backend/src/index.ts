@@ -19,6 +19,18 @@ async function bootstrap() {
       console.log(`====================================================`);
     });
 
+    server.on('error', async (err: any) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`\n❌ Cổng ${PORT} hiện đang bị chiếm dụng bởi một tiến trình khác.`);
+        console.error(`👉 Bạn có thể giải phóng cổng ${PORT} nhanh bằng lệnh PowerShell:`);
+        console.error(`   Stop-Process -Id (Get-NetTCPConnection -LocalPort ${PORT}).OwningProcess -Force\n`);
+      } else {
+        console.error('❌ Lỗi máy chủ:', err);
+      }
+      await cleanupDatabase();
+      process.exit(1);
+    });
+
     const shutdown = async () => {
       console.log('\n🛑 Đang dừng máy chủ Backend...');
       server.close(async () => {
