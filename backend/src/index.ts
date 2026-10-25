@@ -2,7 +2,7 @@ import app from './app';
 import { ENV } from './config/env';
 import { ensureDatabaseReady, cleanupDatabase } from './config/db-bootstrap';
 
-const PORT = ENV.PORT || 5000;
+const PORT = Number(ENV.PORT) || 5000;
 
 async function bootstrap() {
   try {
@@ -10,7 +10,7 @@ async function bootstrap() {
     await ensureDatabaseReady();
 
     // 2. Khởi động máy chủ Express
-    const server = app.listen(PORT, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`====================================================`);
       console.log(`🚀 Blog/CMS Backend Server running on port ${PORT}`);
       console.log(`🌐 API Endpoint: http://localhost:${PORT}/api/v1`);

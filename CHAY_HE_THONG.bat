@@ -15,18 +15,35 @@ echo [1/4] Kiem tra va giai phong cong 5000, 5173 (tranh xung dot)...
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5000" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5173" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 
-echo [2/4] Khoi dong Backend API va MongoDB 7.0...
+echo [2/4] Khoi dong Backend API va May chu MongoDB 7.0...
 cd /d "%~dp0backend"
 start "Blog/CMS - BACKEND (Port 5000)" cmd /k "npm run dev"
 
-echo [3/4] Cho Backend va MongoDB san sang trong 6 giay...
-ping -n 7 127.0.0.1 >nul
+echo [3/4] Dang cho Backend va MongoDB san sang tren cong 5000...
+set /a retry=0
+:WAIT_BACKEND
+timeout /t 2 /nobreak >nul
+set /a retry+=1
+netstat -aon | findstr ":5000" | findstr "LISTENING" >nul
+if errorlevel 1 (
+    echo    ... dang khoi tao MongoDB NoSQL va API (lan thu %retry%) ...
+    if %retry% LSS 30 goto WAIT_BACKEND
+)
+echo    [OK] Backend API va MongoDB da san sang hoat dong!
 
 echo [4/4] Khoi dong Frontend React va Vite...
 cd /d "%~dp0frontend"
 start "Blog/CMS - FRONTEND (Port 5173)" cmd /k "npm run dev"
 
-ping -n 4 127.0.0.1 >nul
+echo Dang cho Frontend san sang tren cong 5173...
+set /a fre=0
+:WAIT_FRONTEND
+timeout /t 2 /nobreak >nul
+set /a fre+=1
+netstat -aon | findstr ":5173" | findstr "LISTENING" >nul
+if errorlevel 1 (
+    if %fre% LSS 10 goto WAIT_FRONTEND
+)
 
 echo Dang mo trinh duyet...
 start http://localhost:5173
