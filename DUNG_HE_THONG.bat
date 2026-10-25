@@ -1,19 +1,20 @@
 @echo off
-chcp 65001 > nul
 title Dung He Thong Blog/CMS - ICTU
 color 0c
 
 echo =======================================================================
-echo    ĐANG DỪNG HỆ THỐNG BLOG/CMS (VŨ TRỌNG NGHĨA - ICTU)...
+echo    DANG DUNG HE THONG BLOG/CMS (VU TRONG NGHIA - ICTU)...
 echo =======================================================================
 echo.
-echo Đang tắt các tiến trình tại cổng 5000 (Backend), 5173 (Frontend), 27017 (MongoDB)...
+echo Dang giai phong cac cong 5000 (Backend), 5173 (Frontend), 27017 (MongoDB)...
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ports = @(5000, 5173, 27017); foreach ($p in $ports) { $conn = Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue; if ($conn) { $pids = $conn.OwningProcess | Select-Object -Unique; foreach ($id in $pids) { if ($id -gt 4) { Stop-Process -Id $id -Force -ErrorAction SilentlyContinue; Write-Host ('[OK] Da giai phong cong ' + $p + ' (PID: ' + $id + ')') } } } }"
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5000" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5173" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":27017" ^| findstr "LISTENING"') do taskkill /f /pid %%a >nul 2>&1
 
 echo.
 echo =======================================================================
-echo    ✅ TOÀN BỘ HỆ THỐNG ĐÃ ĐƯỢC TẮT VÀ GIẢI PHÓNG CỔNG THÀNH CÔNG!
+echo    DA DUNG VA GIAI PHONG TOAN BO CONG MANG THANH CONG!
 echo =======================================================================
 echo.
 pause
